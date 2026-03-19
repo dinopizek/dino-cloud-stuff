@@ -17,4 +17,4 @@ Add-AzVirtualNetworkSubnetConfig -Name "BastionSubnet" -VirtualNetwork $vnet -Ad
 $publicip = New-AzPublicIpAddress -ResourceGroupName $ResourceGroup -name $PublicIPName -location $Location -AllocationMethod Static -Sku Standard
 
 # Create a Bastion.
-New-AzBastion -ResourceGroupName $ResourceGroup -Name $BastionName -PublicIpAddressId $publicip.Id -VirtualNetworkId $vnet.Id -Sku $azureBastionSku
+New-AzBastion -ResourceGroupName $ResourceGroup -Name $BastionName -PublicIpAddressId $publicip.Id -VirtualNetworkId $vnet.Id -Sku $BastionSku
