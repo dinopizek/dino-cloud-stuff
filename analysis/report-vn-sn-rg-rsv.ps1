@@ -1,10 +1,12 @@
+# Empty arrays to hold all items found across subscriptions.
+
 $allVnets = @()
 $allSubnets = @()
 $allResourceGroups = @()
 $allRecoveryVaults = @()
 $allSubscriptions = @()
 
-# 
+# Define expected items based on naming conventions and known inventory.
 
 $expectedSubscriptions = @(
     "rev-sub-supplychain-workload-test",
@@ -72,21 +74,27 @@ $expectedRecoveryVaults = @(
     "rsv-use2-cons-app-backup-dev-01"
 )
 
+# Get all enabled subscriptions and loop through each to gather resources.
+
 $subscriptions = Get-AzSubscription | Where-Object { $_.State -eq "Enabled" }
 
-Write-Host "Found $($subscriptions.Count) subscriptions." -ForegroundColor Yellow
+Write-Host "`nFound $($subscriptions.Count) subscriptions." -ForegroundColor Yellow
 
 $counter = 1
 
 foreach ($sub in $subscriptions) {
     Set-AzContext -SubscriptionId $sub.Id | Out-Null
 
-    Write-Host "[$counter/$($subscriptions.Count)] $($sub.Name)" -ForegroundColor Green
+    Write-Host "`n[$counter/$($subscriptions.Count)] $($sub.Name)" -ForegroundColor Green
 
+    Write-Host "    Fetching virtual networks..." -ForegroundColor Cyan
     $vnets = Get-AzVirtualNetwork
+    Write-Host "    Fetching resource groups..." -ForegroundColor Cyan
     $resourceGroups = Get-AzResourceGroup
+    Write-Host "    Fetching recovery vaults..." -ForegroundColor Cyan
     $recoveryVaults = Get-AzRecoveryServicesVault
 
+    Write-Host "    Found $($vnets.Count) virtual networks, $($resourceGroups.Count) resource groups, and $($recoveryVaults.Count) recovery vaults." -ForegroundColor Cyan
     $allVnets += $vnets.Name
     $allSubnets += $vnets.Subnets.Name
     $allResourceGroups += $resourceGroups.ResourceGroupName
@@ -96,7 +104,7 @@ foreach ($sub in $subscriptions) {
     $counter++
 }
 
-# List all items
+# List all items.
 
 # Write-Host "`n=== Subscriptions ===" -ForegroundColor Cyan
 # $allSubscriptions
@@ -113,19 +121,19 @@ foreach ($sub in $subscriptions) {
 # Write-Host "`n=== Recovery Vaults ===" -ForegroundColor Cyan
 # $allRecoveryVaults
 
-# List missing items
+# List missing items only.
 
 Write-Host "`n=== Missing Subscriptions ===" -ForegroundColor Cyan
-$expectedSubscriptions | Where-Object { $_ -notin $allSubscriptions } | ForEach-Object { Write-Host "MISSING: $_" -ForegroundColor Red }
+$expectedSubscriptions | Where-Object { $_ -notin $allSubscriptions } | ForEach-Object { Write-Host $_ -ForegroundColor Red }
 
 Write-Host "`n=== Missing Resource Groups ===" -ForegroundColor Cyan
-$expectedResourceGroups | Where-Object { $_ -notin $allResourceGroups } | ForEach-Object { Write-Host "MISSING: $_" -ForegroundColor Red }
+$expectedResourceGroups | Where-Object { $_ -notin $allResourceGroups } | ForEach-Object { Write-Host $_ -ForegroundColor Red }
 
 Write-Host "`n=== Missing Recovery Vaults ===" -ForegroundColor Cyan
-$expectedRecoveryVaults | Where-Object { $_ -notin $allRecoveryVaults } | ForEach-Object { Write-Host "MISSING: $_" -ForegroundColor Red }
+$expectedRecoveryVaults | Where-Object { $_ -notin $allRecoveryVaults } | ForEach-Object { Write-Host $_ -ForegroundColor Red }
 
 Write-Host "`n=== Missing VNets ===" -ForegroundColor Cyan
-$expectedVnets | Where-Object { $_ -notin $allVnets } | ForEach-Object { Write-Host "MISSING: $_" -ForegroundColor Red }
+$expectedVnets | Where-Object { $_ -notin $allVnets } | ForEach-Object { Write-Host $_ -ForegroundColor Red }
 
 Write-Host "`n=== Missing Subnets ===" -ForegroundColor Cyan
-$expectedSubnets | Where-Object { $_ -notin $allSubnets } | ForEach-Object { Write-Host "MISSING: $_" -ForegroundColor Red }
+$expectedSubnets | Where-Object { $_ -notin $allSubnets } | ForEach-Object { Write-Host $_ -ForegroundColor Red }
