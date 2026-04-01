@@ -7,11 +7,13 @@ $BastionSku = "Standard"
 
 $PublicIPName = "pip-gewe-dino-lab-01"
 $VnetName = "vn-gewe-dino-lab-02"
-$AddressPrefix = "10.1.1.0/26"
+$VnetAddressPrefix = "10.1.0.0/16"
+$SubnetAddressPrefix = "10.1.0.0/26"
 
 # Create a new Vnet and Bastion subnet.
-$vnet = Get-AzVirtualNetwork -Name $VnetName -ResourceGroupName $ResourceGroup
-Add-AzVirtualNetworkSubnetConfig -Name "BastionSubnet" -VirtualNetwork $vnet -AddressPrefix $AddressPrefix | Set-AzVirtualNetwork
+$vnet = New-AzVirtualNetwork -Name $VnetName -ResourceGroupName $ResourceGroup -Location $Location -AddressPrefix $AddressPrefix
+# $vnet = Get-AzVirtualNetwork -Name $VnetName -ResourceGroupName $ResourceGroup
+Add-AzVirtualNetworkSubnetConfig -Name "BastionSubnet" -VirtualNetwork $vnet -AddressPrefix $SubnetAddressPrefix | Set-AzVirtualNetwork
 
 # Create a public IP address for the Bastion.
 $publicip = New-AzPublicIpAddress -ResourceGroupName $ResourceGroup -name $PublicIPName -location $Location -AllocationMethod Static -Sku Standard
