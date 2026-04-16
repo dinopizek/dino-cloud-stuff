@@ -1,0 +1,9 @@
+# Fetch SKUs for East US
+$skus = Get-AzComputeResourceSku | Where-Object { 
+    $_.Locations -contains "eastus" -and 
+    $_.ResourceType -eq "virtualMachines" -and
+    $_.Restrictions.Count -eq 0
+}
+
+# Display VM Size and any current restrictions (e.g., Capacity, Quota)
+$skus | Select-Object Name, ResourceType, Restrictions, Capacity | Format-Table
