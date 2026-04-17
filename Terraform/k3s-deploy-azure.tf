@@ -118,3 +118,17 @@ resource "azurerm_linux_virtual_machine" "k3s_virtual_machine" {
     version   = "latest"
   }
 }
+
+resource "azurerm_dev_test_global_vm_shutdown_schedule" "k3s_vm_shutdown_schedule" {
+  for_each           = local.nodes
+  virtual_machine_id = azurerm_linux_virtual_machine.k3s_virtual_machine[each.key].id
+  location           = azurerm_resource_group.k3s_resource_group.location
+  enabled            = true
+
+  daily_recurrence_time = "1800"
+  timezone              = "Central European Standard Time"
+
+  notification_settings {
+    enabled         = false
+  }
+}
