@@ -129,6 +129,6 @@ resource "azurerm_dev_test_global_vm_shutdown_schedule" "k3s_vm_shutdown_schedul
   timezone              = "Central European Standard Time"
 
   notification_settings {
-    enabled         = false
+    enabled = false
   }
 }
