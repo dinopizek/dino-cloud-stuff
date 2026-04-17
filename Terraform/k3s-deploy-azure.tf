@@ -2,7 +2,7 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "k3s" {
+resource "azurerm_resource_group" "k3s_resource_group" {
   name     = "rg-gewe-k3s-dino-01"
   location = "germanywestcentral"
   tags = {
@@ -10,24 +10,24 @@ resource "azurerm_resource_group" "k3s" {
   }
 }
 
-resource "azurerm_virtual_network" "k3s" {
+resource "azurerm_virtual_network" "k3s_virtual_network" {
   name                = "vn-gewe-k3s-dino-01"
   address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.k3s.location
-  resource_group_name = azurerm_resource_group.k3s.name
+  location            = azurerm_resource_group.k3s_resource_group.location
+  resource_group_name = azurerm_resource_group.k3s_resource_group.name
 }
 
 resource "azurerm_subnet" "k3s" {
   name                 = "sn-k3s-dino-01"
-  resource_group_name  = azurerm_resource_group.k3s.name
-  virtual_network_name = azurerm_virtual_network.k3s.name
+  resource_group_name  = azurerm_resource_group.k3s_resource_group.name
+  virtual_network_name = azurerm_virtual_network.k3s_virtual_network.name
   address_prefixes     = ["10.0.1.0/24"]
 }
 
-resource "azurerm_network_security_group" "k3s" {
+resource "azurerm_network_security_group" "k3s_network_security_group" {
   name                = "nsg-vn-gewe-k3s-dino-01"
-  location            = azurerm_resource_group.k3s.location
-  resource_group_name = azurerm_resource_group.k3s.name
+  location            = azurerm_resource_group.k3s_resource_group.location
+  resource_group_name = azurerm_resource_group.k3s_resource_group.name
 
   security_rule {
     name                       = "SSH"
@@ -62,50 +62,51 @@ locals {
   }
 }
 
-resource "azurerm_public_ip" "k3s" {
+resource "azurerm_public_ip" "k3s_public_ip" {
   for_each            = local.nodes
-  name                = "${each.key}-ip"
-  location            = azurerm_resource_group.k3s.location
-  resource_group_name = azurerm_resource_group.k3s.name
+  name                = "pip-vm-gewe-k3s-${each.key}"
+  location            = azurerm_resource_group.k3s_resource_group.location
+  resource_group_name = azurerm_resource_group.k3s_resource_group.name
   allocation_method   = "Static"
   sku                 = "Standard"
 }
 
-resource "azurerm_network_interface" "k3s" {
+resource "azurerm_network_interface" "k3s_network_interface" {
   for_each            = local.nodes
-  name                = "nic-${each.key}"
-  location            = azurerm_resource_group.k3s.location
-  resource_group_name = azurerm_resource_group.k3s.name
+  name                = "nic-vm-gewe-k3s-${each.key}"
+  location            = azurerm_resource_group.k3s_resource_group.location
+  resource_group_name = azurerm_resource_group.k3s_resource_group.name
 
   ip_configuration {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.k3s.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.k3s[each.key].id
+    public_ip_address_id          = azurerm_public_ip.k3s_public_ip[each.key].id
   }
 }
 
-resource "azurerm_network_interface_security_group_association" "k3s" {
+resource "azurerm_network_interface_security_group_association" "k3s_nsg_association" {
   for_each                  = local.nodes
-  network_interface_id      = azurerm_network_interface.k3s[each.key].id
-  network_security_group_id = azurerm_network_security_group.k3s.id
+  network_interface_id      = azurerm_network_interface.k3s_network_interface[each.key].id
+  network_security_group_id = azurerm_network_security_group.k3s_network_security_group.id
 }
 
-resource "azurerm_linux_virtual_machine" "k3s" {
+resource "azurerm_linux_virtual_machine" "k3s_virtual_machine" {
   for_each                        = local.nodes
   name                            = "vm-gewe-k3s-${each.key}"
-  resource_group_name             = azurerm_resource_group.k3s.name
-  location                        = azurerm_resource_group.k3s.location
+  resource_group_name             = azurerm_resource_group.k3s_resource_group.name
+  location                        = azurerm_resource_group.k3s_resource_group.location
   size                            = "Standard_B1s"
   admin_username                  = "azureuser"
   admin_password                  = "Jakalozinka!"
   disable_password_authentication = false
 
   network_interface_ids = [
-    azurerm_network_interface.k3s[each.key].id,
+    azurerm_network_interface.k3s_network_interface[each.key].id,
   ]
 
   os_disk {
+    name                 = "osdisk-vm-gewe-k3s-${each.key}"
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
