@@ -119,6 +119,12 @@ resource "azurerm_container_app" "umami_container_app" {
   }
 }
 
+data "azurerm_client_config" "current" {}
+
+data "azuread_user" "admin" {
+  user_principal_name = "dino@rnr.hr"
+}
+
 resource "azurerm_postgresql_flexible_server" "umami_postgresql_server" {
   name                   = "psqldb-sc-umami-prod-01"
   location               = azurerm_resource_group.umami_workload_resource_group.location
@@ -130,7 +136,22 @@ resource "azurerm_postgresql_flexible_server" "umami_postgresql_server" {
   storage_mb             = 65536
   storage_tier           = "P6"
 
+  authentication {
+    active_directory_auth_enabled = true
+    tenant_id                     = data.azurerm_client_config.current.tenant_id
+    password_auth_enabled         = true
+  }
+
   lifecycle {
     ignore_changes = [zone]
   }
+}
+
+resource "azurerm_postgresql_flexible_server_active_directory_administrator" "postgresql_administrator" {
+  server_name         = azurerm_postgresql_flexible_server.umami_postgresql_server.name
+  resource_group_name = azurerm_resource_group.umami_workload_resource_group.name
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  object_id           = data.azuread_user.admin.object_id
+  principal_name      = data.azuread_user.admin.user_principal_name
+  principal_type      = "User"
 }
