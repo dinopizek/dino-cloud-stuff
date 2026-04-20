@@ -136,6 +136,10 @@ resource "azurerm_postgresql_flexible_server" "umami_postgresql_server" {
   storage_mb             = 65536
   storage_tier           = "P6"
 
+  identity {
+    type = "SystemAssigned"
+  }
+
   authentication {
     active_directory_auth_enabled = true
     tenant_id                     = data.azurerm_client_config.current.tenant_id
@@ -147,7 +151,16 @@ resource "azurerm_postgresql_flexible_server" "umami_postgresql_server" {
   }
 }
 
-resource "azurerm_postgresql_flexible_server_active_directory_administrator" "postgresql_administrator" {
+resource "azurerm_postgresql_flexible_server_active_directory_administrator" "postgresql_administrator_service_principal" {
+  server_name         = azurerm_postgresql_flexible_server.umami_postgresql_server.name
+  resource_group_name = azurerm_resource_group.umami_workload_resource_group.name
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  object_id           = azurerm_postgresql_flexible_server.umami_postgresql_server.identity[0].principal_id
+  principal_name      = azurerm_postgresql_flexible_server.umami_postgresql_server.name
+  principal_type      = "ServicePrincipal"
+}
+
+resource "azurerm_postgresql_flexible_server_active_directory_administrator" "postgresql_administrator_user" {
   server_name         = azurerm_postgresql_flexible_server.umami_postgresql_server.name
   resource_group_name = azurerm_resource_group.umami_workload_resource_group.name
   tenant_id           = data.azurerm_client_config.current.tenant_id
