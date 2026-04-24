@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "umami_workload_resource_group" {
-  name     = "rg-sc-umami-prod-01"
+  name     = "rg-sc-umami-workload-prod-01"
   location = "swedencentral"
   tags = {
     ManagedBy = "Terraform"
@@ -37,6 +37,15 @@ resource "azurerm_subnet" "cae_subnet" {
   resource_group_name  = azurerm_resource_group.umami_network_resource_group.name
   virtual_network_name = azurerm_virtual_network.umami_virtual_network.name
   address_prefixes     = ["10.0.1.0/24"]
+
+  delegation {
+    name = "container-app-environment-delegation"
+
+    service_delegation {
+      name    = "Microsoft.App/environments"
+      actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]
+    }
+  }
 }
 
 resource "azurerm_network_security_group" "pe_network_security_group" {
@@ -68,9 +77,13 @@ resource "azurerm_route_table" "umami_route_table" {
 }
 
 resource "azurerm_container_app_environment" "umami_container_app_environment" {
-  name                = "cae-sc-umami-prod-01"
-  location            = azurerm_resource_group.umami_workload_resource_group.location
-  resource_group_name = azurerm_resource_group.umami_workload_resource_group.name
+  name                               = "cae-sc-umami-prod-01"
+  location                           = azurerm_resource_group.umami_workload_resource_group.location
+  resource_group_name                = azurerm_resource_group.umami_workload_resource_group.name
+  public_network_access              = "Enabled"
+  infrastructure_resource_group_name = "rg-sc-umami-cae-managed-prod-01"
+  infrastructure_subnet_id           = azurerm_subnet.cae_subnet.id
+  internal_load_balancer_enabled     = false
 
   workload_profile {
     name                  = "Consumption"
