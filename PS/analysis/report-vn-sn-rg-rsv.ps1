@@ -78,17 +78,17 @@ $subscriptions = Get-AzSubscription | Where-Object { $_.State -eq "Enabled" }
 Write-Host "`nFound $($subscriptions.Count) subscriptions. Querying in parallel..." -ForegroundColor Yellow
 
 $results = $subscriptions | ForEach-Object -ThrottleLimit 10 -Parallel {
-    $current_sub = $_
-    $ctx = Set-AzContext -SubscriptionId $current_sub.Id -Scope Process
+    $currentSubscription = $_
+    $context = Set-AzContext -SubscriptionId $currentSubscription.Id -Scope Process
 
-    Write-Host "[$($current_sub.Name)] fetching..." -ForegroundColor Cyan
+    Write-Host "[$($currentSubscription.Name)] fetching..." -ForegroundColor Cyan
 
-    $vnets = Get-AzVirtualNetwork        -DefaultProfile $ctx
-    $resourceGroups = Get-AzResourceGroup         -DefaultProfile $ctx
-    $recoveryVaults = Get-AzRecoveryServicesVault -DefaultProfile $ctx
+    $vnets = Get-AzVirtualNetwork        -DefaultProfile $context
+    $resourceGroups = Get-AzResourceGroup         -DefaultProfile $context
+    $recoveryVaults = Get-AzRecoveryServicesVault -DefaultProfile $context
 
     [PSCustomObject]@{
-        Subscription   = $current_sub.Name
+        Subscription   = $currentSubscription.Name
         VNets          = @($vnets.Name)
         Subnets        = @($vnets.Subnets.Name)
         ResourceGroups = @($resourceGroups.ResourceGroupName)
