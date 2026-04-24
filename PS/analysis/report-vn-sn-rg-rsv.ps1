@@ -83,7 +83,7 @@ $results = $subscriptions | ForEach-Object -ThrottleLimit 10 -Parallel {
 
     Write-Host "[$($current_sub.Name)] fetching..." -ForegroundColor Cyan
 
-    $vnets          = Get-AzVirtualNetwork        -DefaultProfile $ctx
+    $vnets = Get-AzVirtualNetwork        -DefaultProfile $ctx
     $resourceGroups = Get-AzResourceGroup         -DefaultProfile $ctx
     $recoveryVaults = Get-AzRecoveryServicesVault -DefaultProfile $ctx
 
@@ -96,9 +96,9 @@ $results = $subscriptions | ForEach-Object -ThrottleLimit 10 -Parallel {
     }
 }
 
-$allSubscriptions  = $results.Subscription
-$allVnets          = $results.VNets
-$allSubnets        = $results.Subnets
+$allSubscriptions = $results.Subscription
+$allVnets = $results.VNets
+$allSubnets = $results.Subnets
 $allResourceGroups = $results.ResourceGroups
 $allRecoveryVaults = $results.RecoveryVaults
 

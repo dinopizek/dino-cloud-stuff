@@ -16,4 +16,4 @@ Set-AzContext -SubscriptionId $Subscription.Id | Out-Null
 #New-AzResourceGroup -Name $ResourceGroup -Location $Location
 
 #Create a resource group with tags.
-New-AzResourceGroup -Name $ResourceGroup -Location $Location -Tag @{Criticality=$CriticalityTag; Domain=$DomainTag}
+New-AzResourceGroup -Name $ResourceGroup -Location $Location -Tag @{Criticality = $CriticalityTag; Domain = $DomainTag }
