@@ -101,23 +101,23 @@ $expectedSubscriptions | Where-Object { $_ -notin $allSubscriptions } | ForEach-
 Write-Host "`n=== Resource Groups ===" -ForegroundColor Cyan
 $allResourceGroups | Group-Object | ForEach-Object { $rgCounts[$_.Name] = $_.Count }
 $expectedResourceGroups | Where-Object { $_ -notin $allResourceGroups } | ForEach-Object { Write-Host "[Missing] $_" -ForegroundColor Red }
-$expectedResourceGroups | Where-Object { $rgCounts[$_] -gt 1 } | ForEach-Object { Write-Host "[Double Check] $_ (found $($rgCounts[$_]) times)" -ForegroundColor DarkYellow }
+$expectedResourceGroups | Where-Object { $rgCounts[$_] -gt 1 } | ForEach-Object { Write-Host "[Double Check] $_ (found $($rgCounts[$_]) times)" -ForegroundColor Magenta }
 #$expectedResourceGroups | Where-Object { $_ -in $allResourceGroups } | ForEach-Object { Write-Host "[OK] $_" -ForegroundColor Green }
 
 Write-Host "`n=== Recovery Vaults ===" -ForegroundColor Cyan
 $allRecoveryVaults | Group-Object | ForEach-Object { $rsvCounts[$_.Name] = $_.Count }
 $expectedRecoveryVaults | Where-Object { $_ -notin $allRecoveryVaults } | ForEach-Object { Write-Host "[Missing] $_" -ForegroundColor Red }
-$expectedRecoveryVaults | Where-Object { $rsvCounts[$_] -gt 1 } | ForEach-Object { Write-Host "[Double Check] $_ (found $($rsvCounts[$_]) times)" -ForegroundColor DarkYellow }
+$expectedRecoveryVaults | Where-Object { $rsvCounts[$_] -gt 1 } | ForEach-Object { Write-Host "[Double Check] $_ (found $($rsvCounts[$_]) times)" -ForegroundColor Magenta }
 #$expectedRecoveryVaults | Where-Object { $_ -in $allRecoveryVaults } | ForEach-Object { Write-Host "[OK] $_" -ForegroundColor Green }
 
 Write-Host "`n=== VNets ===" -ForegroundColor Cyan
 $allVnets | Group-Object | ForEach-Object { $vnetCounts[$_.Name] = $_.Count }
 $expectedVnets | Where-Object { $_ -notin $allVnets } | ForEach-Object { Write-Host "[Missing] $_" -ForegroundColor Red }
-$expectedVnets | Where-Object { $vnetCounts[$_] -gt 1 } | ForEach-Object { Write-Host "[Double Check] $_ (found $($vnetCounts[$_]) times)" -ForegroundColor DarkYellow }
+$expectedVnets | Where-Object { $vnetCounts[$_] -gt 1 } | ForEach-Object { Write-Host "[Double Check] $_ (found $($vnetCounts[$_]) times)" -ForegroundColor Magenta }
 #$expectedVnets | Where-Object { $_ -in $allVnets } | ForEach-Object { Write-Host "[OK] $_" -ForegroundColor Green }
 
 Write-Host "`n=== Subnets ===" -ForegroundColor Cyan
 $allSubnets | Group-Object | ForEach-Object { $subnetCounts[$_.Name] = $_.Count }
 $expectedSubnets | Where-Object { $_ -notin $allSubnets } | ForEach-Object { Write-Host "[Missing] $_" -ForegroundColor Red }
-$expectedSubnets | Where-Object { $subnetCounts[$_] -gt 1 } | ForEach-Object { Write-Host "[Double Check] $_ (found $($subnetCounts[$_]) times)" -ForegroundColor DarkYellow }
+$expectedSubnets | Where-Object { $subnetCounts[$_] -gt 1 } | ForEach-Object { Write-Host "[Double Check] $_ (found $($subnetCounts[$_]) times)" -ForegroundColor Magenta }
 #$expectedSubnets | Where-Object { $_ -in $allSubnets } | ForEach-Object { Write-Host "[OK] $_" -ForegroundColor Green }
