@@ -75,23 +75,6 @@ $allSubnets = $results.Subnets
 $allResourceGroups = $results.ResourceGroups
 $allRecoveryVaults = $results.RecoveryVaults
 
-# List all items.
-
-# Write-Host "`n=== Subscriptions ===" -ForegroundColor Cyan
-# $allSubscriptions
-
-# Write-Host "`n=== Resource Groups ===" -ForegroundColor Cyan
-# $allResourceGroups
-
-# Write-Host "`n=== VNets ===" -ForegroundColor Cyan
-# $allVnets
-
-# Write-Host "`n=== Subnets ===" -ForegroundColor Cyan
-# $allSubnets
-
-# Write-Host "`n=== Recovery Vaults ===" -ForegroundColor Cyan
-# $allRecoveryVaults
-
 # List missing and present items only.
 
 Write-Host "`n=== Subscriptions ===" -ForegroundColor Cyan
