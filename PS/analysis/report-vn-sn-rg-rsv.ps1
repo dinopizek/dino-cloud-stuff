@@ -75,7 +75,7 @@ $allSubnets = $results.Subnets
 $allResourceGroups = $results.ResourceGroups
 $allRecoveryVaults = $results.RecoveryVaults
 
-# List missing and present items only.
+# List report.
 
 Write-Host "`n=== Subscriptions ===" -ForegroundColor Cyan
 $expectedSubscriptions | Where-Object { $_ -notin $allSubscriptions } | ForEach-Object { Write-Host "[Missing] $_" -ForegroundColor Red }
