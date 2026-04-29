@@ -77,6 +77,8 @@ $allRecoveryVaults = $results.RecoveryVaults
 
 # List report.
 
+Write-Host "`nGenerated on: $(Get-Date)" -ForegroundColor Yellow
+
 Write-Host "`n=== Subscriptions ===" -ForegroundColor Cyan
 $expectedSubscriptions | Where-Object { $_ -notin $allSubscriptions } | ForEach-Object { Write-Host "[Missing] $_" -ForegroundColor Red }
 #$expectedSubscriptions | Where-Object { $_ -in $allSubscriptions } | ForEach-Object { Write-Host "[OK] $_" -ForegroundColor Green }
