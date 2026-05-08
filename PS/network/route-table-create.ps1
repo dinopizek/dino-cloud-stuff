@@ -1,10 +1,15 @@
 # Define the following parameters.
+$SubscriptionName = "YourSubscriptionName"
 $ResourceGroup = "rg-gewe-dino-lab-01"
 $Location = "Germany West Central"
 $RouteTableName = "RouteTable01"
 $VnetAddressPrefix = "10.1.0.0/16"
 $SubnetAddressPrefix = "10.1.0.0/24"
 $VirtualApplianceIp = "10.254.0.10"
+
+# Set the subscription context.
+$Subscription = Get-AzSubscription -SubscriptionName $SubscriptionName
+Set-AzContext -SubscriptionId $Subscription.Id
 
 # Define the three routes.
 $routeDefault = New-AzRouteConfig -Name "route-default" -AddressPrefix "0.0.0.0/0" -NextHopType "VirtualAppliance" -NextHopIpAddress $VirtualApplianceIp
