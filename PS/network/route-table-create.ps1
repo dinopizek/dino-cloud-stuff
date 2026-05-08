@@ -16,5 +16,5 @@ $routeDefault = New-AzRouteConfig -Name "route-default" -AddressPrefix "0.0.0.0/
 $routeIntraSubnet = New-AzRouteConfig -Name "route-intra-subnet" -AddressPrefix $SubnetAddressPrefix -NextHopType "VnetLocal"
 $routeIntraVnet = New-AzRouteConfig -Name "route-intra-vnet" -AddressPrefix $VnetAddressPrefix -NextHopType "VirtualAppliance" -NextHopIpAddress $VirtualApplianceIp
 
-# Create the route table with all three routes.
-New-AzRouteTable -Name $RouteTableName -ResourceGroupName $ResourceGroup -Location $Location -Route $routeDefault, $routeIntraSubnet, $routeIntraVnet
+# Create the route table with all three routes and disable gateway route propagation.
+New-AzRouteTable -Name $RouteTableName -ResourceGroupName $ResourceGroup -Location $Location -DisableBgpRoutePropagation -Route $routeDefault, $routeIntraSubnet, $routeIntraVnet
