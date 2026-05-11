@@ -47,7 +47,7 @@ $expectedRecoveryVaults = @(
 # Disable context autosave to prevent cross-runspace contamination
 Disable-AzContextAutosave -Scope Process | Out-Null
 
-$subscriptions = Get-AzSubscription | Where-Object { $_.State -eq "Enabled" -and $_.Name -like "rev-sub*" }
+$subscriptions = Get-AzSubscription | Where-Object { $_.State -eq "Enabled" -and $_.Name -notlike "*Visual Studio Enterprise Subscription*" }
 Write-Host "`nFound $($subscriptions.Count) subscriptions. Querying in parallel..." -ForegroundColor Yellow
 
 $results = $subscriptions | ForEach-Object -ThrottleLimit 10 -Parallel {
