@@ -1,5 +1,4 @@
 # Empty arrays to hold all items found across subscriptions.
-
 $allVnets = @()
 $allSubnets = @()
 $allResourceGroups = @()
@@ -13,7 +12,6 @@ $vnetCounts = @{};
 $subnetCounts = @{}
 
 # Define expected items based on naming conventions and known inventory.
-
 $expectedSubscriptions = @(
     "rev-sub-corporate-workload-prod",
     "rev-sub-consumer-workload-test",
@@ -76,7 +74,6 @@ $allResourceGroups = $results.ResourceGroups
 $allRecoveryVaults = $results.RecoveryVaults
 
 # List report.
-
 Write-Host "`nGenerated on: $(Get-Date)" -ForegroundColor Yellow
 
 Write-Host "`n=== Subscriptions ===" -ForegroundColor Cyan
