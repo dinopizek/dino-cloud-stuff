@@ -22,8 +22,9 @@ $subscriptions = Get-AzSubscription | Where-Object {
 }
 Write-Host "`nFound $($subscriptions.Count) subscriptions. Querying in parallel..." -ForegroundColor Yellow
  
-# Emit peering rows directly — pipeline flattens them into a single array.
-$allPeerings = $subscriptions | ForEach-Object -ThrottleLimit 10 -Parallel {
+# Emit two row types: VNet markers (one per VNet) + Peering rows (one per peering).
+# Pipeline flattens both into a single array, distinguished by the Type property.
+$allRows = $subscriptions | ForEach-Object -ThrottleLimit 10 -Parallel {
     $currentSubscription = $_
     $context = Set-AzContext -SubscriptionId $currentSubscription.Id -Scope Process
  
@@ -32,6 +33,13 @@ $allPeerings = $subscriptions | ForEach-Object -ThrottleLimit 10 -Parallel {
     $vnets = Get-AzVirtualNetwork -DefaultProfile $context
  
     foreach ($vnet in $vnets) {
+        # Marker row: confirms this VNet exists somewhere in scope.
+        [PSCustomObject]@{
+            Type         = "VNet"
+            Subscription = $currentSubscription.Name
+            VNet         = $vnet.Name
+        }
+ 
         foreach ($peering in $vnet.VirtualNetworkPeerings) {
             # RemoteVirtualNetwork.Id format:
             # /subscriptions/<subId>/resourceGroups/<rg>/providers/Microsoft.Network/virtualNetworks/<vnetName>
@@ -40,6 +48,7 @@ $allPeerings = $subscriptions | ForEach-Object -ThrottleLimit 10 -Parallel {
             $remoteRg = ($remoteId -split "/")[4]
  
             [PSCustomObject]@{
+                Type                  = "Peering"
                 Subscription          = $currentSubscription.Name
                 VNet                  = $vnet.Name
                 VNetRg                = $vnet.ResourceGroupName
@@ -55,6 +64,9 @@ $allPeerings = $subscriptions | ForEach-Object -ThrottleLimit 10 -Parallel {
         }
     }
 }
+ 
+$foundVnets = $allRows | Where-Object Type -eq "VNet"
+$allPeerings = $allRows | Where-Object Type -eq "Peering"
  
 # Peering report
 Write-Host "`nGenerated on: $(Get-Date)" -ForegroundColor Yellow
@@ -77,13 +89,23 @@ foreach ($p in $scopedPeerings) {
     Write-Host "    SyncLevel: $($p.SyncLevel)   ForwardedTraffic: $($p.AllowForwardedTraffic)   GatewayTransit: $($p.AllowGatewayTransit)   UseRemoteGateways: $($p.UseRemoteGateways)`n" -ForegroundColor White
 }
  
-# Flag expected VNets that have no peerings at all.
-# Only meaningful when an explicit expected list is provided.
+# Split into two checks when an explicit expected list is provided:
+# Not Found - VNet name doesn't exist anywhere in scope (typo, wrong sub, deleted)
+# No Peering - VNet exists but has zero peerings configured
 if ($expectedVnets.Count -gt 0) {
+    $foundVnetNames = $foundVnets.VNet | Sort-Object -Unique
     $vnetsWithPeerings = $scopedPeerings | Select-Object -ExpandProperty VNet -Unique
-    $missingPeerings = $expectedVnets | Where-Object { $_ -notin $vnetsWithPeerings }
-    if ($missingPeerings) {
+ 
+    $notFound = $expectedVnets | Where-Object { $_ -notin $foundVnetNames }
+    $unpeered = $expectedVnets | Where-Object { $_ -in $foundVnetNames -and $_ -notin $vnetsWithPeerings }
+ 
+    if ($notFound) {
+        Write-Host "`n=== VNets not found ===" -ForegroundColor Cyan
+        $notFound | ForEach-Object { Write-Host "$_" -ForegroundColor Red }
+    }
+ 
+    if ($unpeered) {
         Write-Host "`n=== VNets with no peerings ===" -ForegroundColor Cyan
-        $missingPeerings | ForEach-Object { Write-Host "$_" -ForegroundColor Magenta }
+        $unpeered | ForEach-Object { Write-Host "$_" -ForegroundColor Red }
     }
 }
