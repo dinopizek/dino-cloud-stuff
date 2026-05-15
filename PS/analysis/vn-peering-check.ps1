@@ -20,7 +20,7 @@ $subscriptions = Get-AzSubscription | Where-Object {
     $_.Name -notlike "*Visual Studio Enterprise Subscription*" -and
     ($expectedSubscriptions.Count -eq 0 -or $_.Name -in $expectedSubscriptions)
 }
-Write-Host "`nFound $($subscriptions.Count) subscriptions. Querying in parallel..." -ForegroundColor Yellow
+Write-Host "`nFound $($subscriptions.Count) subscriptions. Querying in parallel...`n" -ForegroundColor Yellow
  
 # Emit two row types: VNet markers (one per VNet) + Peering rows (one per peering).
 # Pipeline flattens both into a single array, distinguished by the Type property.

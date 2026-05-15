@@ -46,7 +46,7 @@ $expectedRecoveryVaults = @(
 Disable-AzContextAutosave -Scope Process | Out-Null
 
 $subscriptions = Get-AzSubscription | Where-Object { $_.State -eq "Enabled" -and $_.Name -like "rev-sub*" }
-Write-Host "`nFound $($subscriptions.Count) subscriptions. Querying in parallel..." -ForegroundColor Yellow
+Write-Host "`nFound $($subscriptions.Count) subscriptions. Querying in parallel...`n" -ForegroundColor Yellow
  
 # Emit one row per resource tagged by Type; pipeline flattens into a single array.
 $allRows = $subscriptions | ForEach-Object -ThrottleLimit 10 -Parallel {
@@ -55,8 +55,8 @@ $allRows = $subscriptions | ForEach-Object -ThrottleLimit 10 -Parallel {
  
     Write-Host "[$($currentSubscription.Name)] fetching..." -ForegroundColor Cyan
  
-    $vnets = Get-AzVirtualNetwork        -DefaultProfile $context
-    $resourceGroups = Get-AzResourceGroup         -DefaultProfile $context
+    $vnets = Get-AzVirtualNetwork -DefaultProfile $context
+    $resourceGroups = Get-AzResourceGroup -DefaultProfile $context
     $recoveryVaults = Get-AzRecoveryServicesVault -DefaultProfile $context
  
     [PSCustomObject]@{ Type = "Subscription"; Subscription = $currentSubscription.Name; Name = $currentSubscription.Name }

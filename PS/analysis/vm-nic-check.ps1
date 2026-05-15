@@ -23,7 +23,7 @@ $subscriptions = Get-AzSubscription | Where-Object {
     $_.Name -notlike "*Visual Studio Enterprise Subscription*" -and
     ($expectedSubscriptions.Count -eq 0 -or $_.Name -in $expectedSubscriptions)
 }
-Write-Host "`nFound $($subscriptions.Count) subscriptions. Querying in parallel..." -ForegroundColor Yellow
+Write-Host "`nFound $($subscriptions.Count) subscriptions. Querying in parallel...`n" -ForegroundColor Yellow
  
 # Emit one VM marker per VM + one row per VM-NIC-IPConfig combo; pipeline flattens into a single array.
 $allRows = $subscriptions | ForEach-Object -ThrottleLimit 10 -Parallel {
@@ -32,7 +32,7 @@ $allRows = $subscriptions | ForEach-Object -ThrottleLimit 10 -Parallel {
  
     Write-Host "[$($currentSubscription.Name)] fetching..." -ForegroundColor Cyan
  
-    $vms = Get-AzVM             -DefaultProfile $context
+    $vms = Get-AzVM -DefaultProfile $context
     $nics = Get-AzNetworkInterface -DefaultProfile $context
  
     # Index NICs by their resource ID for fast lookup per VM.
