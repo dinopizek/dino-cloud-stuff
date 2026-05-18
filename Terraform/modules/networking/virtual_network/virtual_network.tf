@@ -1,6 +1,6 @@
 resource "azurerm_virtual_network" "virtual_network" {
-  name                = "vn-gewe-k3s-dino-01"
-  address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.k3s_resource_group.location
-  resource_group_name = azurerm_resource_group.k3s_resource_group.name
+  name                = var.name
+  address_space       = var.settings.address_space
+  location            = var.settings.location
+  resource_group_name = var.settings.resource_group_name
 }

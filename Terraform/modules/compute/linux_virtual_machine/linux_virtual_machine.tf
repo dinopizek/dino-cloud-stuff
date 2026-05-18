@@ -1,26 +1,23 @@
 resource "azurerm_linux_virtual_machine" "virtual_machine" {
-  name                            = "vm-gewe-k3s-${each.key}"
-  resource_group_name             = azurerm_resource_group.k3s_resource_group.name
-  location                        = azurerm_resource_group.k3s_resource_group.location
-  size                            = "Standard_B1s"
-  admin_username                  = "azureuser"
-  admin_password                  = "Jakalozinka!"
-  disable_password_authentication = false
-
-  network_interface_ids = [
-    azurerm_network_interface.k3s_network_interface[each.key].id,
-  ]
+  name                            = var.name
+  resource_group_name             = var.settings.resource_group_name
+  location                        = var.settings.location
+  size                            = var.settings.size
+  admin_username                  = var.settings.admin_username
+  admin_password                  = var.settings.admin_password
+  disable_password_authentication = var.settings.disable_password_authentication
+  network_interface_ids           = var.settings.network_interface_ids
 
   os_disk {
-    name                 = "osdisk-vm-gewe-k3s-${each.key}"
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
+    name                 = var.settings.os_disk.name
+    caching              = var.settings.os_disk.caching
+    storage_account_type = var.settings.os_disk.storage_account_type
   }
 
   source_image_reference {
-    publisher = "Canonical"
-    offer     = "ubuntu-24_04-lts"
-    sku       = "server"
-    version   = "latest"
+    publisher = var.settings.source_image_reference.publisher
+    offer     = var.settings.source_image_reference.offer
+    sku       = var.settings.source_image_reference.sku
+    version   = var.settings.source_image_reference.version
   }
 }

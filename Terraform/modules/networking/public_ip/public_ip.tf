@@ -1,7 +1,7 @@
-resource "azurerm_public_ip" "k3s_public_ip" {
-  name                = "pip-vm-gewe-k3s-${each.key}"
-  location            = azurerm_resource_group.k3s_resource_group.location
-  resource_group_name = azurerm_resource_group.k3s_resource_group.name
-  allocation_method   = "Static"
-  sku                 = "Standard"
+resource "azurerm_public_ip" "public_ip" {
+  name                = var.name
+  location            = var.settings.location
+  resource_group_name = var.settings.resource_group_name
+  allocation_method   = var.settings.allocation_method
+  sku                 = var.settings.sku
 }
