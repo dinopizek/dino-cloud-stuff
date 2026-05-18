@@ -7,6 +7,7 @@ resource "azurerm_linux_virtual_machine" "virtual_machine" {
   admin_password                  = var.settings.admin_password
   disable_password_authentication = var.settings.disable_password_authentication
   network_interface_ids           = var.settings.network_interface_ids
+  tags                            = try(var.settings.tags, null)
 
   os_disk {
     name                 = var.settings.os_disk.name

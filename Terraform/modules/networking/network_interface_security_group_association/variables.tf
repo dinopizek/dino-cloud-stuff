@@ -1,6 +1,5 @@
-variable "name" {
+variable "network_interface_id" {
 }
 
-variable "settings" {
-  description = "(Required) configuration object describing the networking configuration"
+variable "network_security_group_id" {
 }
