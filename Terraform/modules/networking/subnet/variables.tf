@@ -2,5 +2,5 @@ variable "name" {
 }
 
 variable "settings" {
-  description = "(Required) configuration object describing the networking configuration"
+  description = "(Required) configuration object describing the resource configuration"
 }

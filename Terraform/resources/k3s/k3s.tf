@@ -54,3 +54,20 @@ module "network_security_group_association" {
   network_security_group_id = module.network_security_group[each.value.network_security_group_key].id
   depends_on                = [module.network_interface, module.network_security_group]
 }
+
+module "linux_virtual_machine" {
+  source                = "../../modules/compute/linux_virtual_machine"
+  for_each              = var.linux_virtual_machines
+  name                  = each.key
+  settings              = each.value
+  network_interface_ids = [for nic_key in each.value.network_interface_keys : module.network_interface[nic_key].id]
+  depends_on            = [module.network_interface]
+}
+
+module "network_security_rule" {
+  source     = "../../modules/networking/network_security_rule"
+  for_each   = var.network_security_rules
+  name       = each.key
+  settings   = each.value
+  depends_on = [module.network_security_group]
+}

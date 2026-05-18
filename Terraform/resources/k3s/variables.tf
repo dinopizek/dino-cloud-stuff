@@ -25,3 +25,10 @@ variable "network_interfaces" {
 variable "network_security_group_associations" {
   type = map(any)
 }
+
+variable "linux_virtual_machines" {
+  type = map(any)
+}
+
+variable "network_security_rules" {
+}
