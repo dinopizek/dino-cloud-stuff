@@ -47,7 +47,7 @@ module "network_interface" {
   depends_on           = [module.subnet, module.network_security_group, module.public_ip]
 }
 
-module "network_security_group_association" {
+module "network_interface_security_group_association" {
   source                    = "../../modules/networking/network_interface_security_group_association"
   for_each                  = var.network_security_group_associations
   network_interface_id      = module.network_interface[each.value.network_interface_key].id
