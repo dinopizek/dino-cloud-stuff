@@ -71,3 +71,20 @@ module "postgresql_flexible_server" {
   tenant_id  = data.azurerm_client_config.current.tenant_id
   depends_on = [module.resource_group]
 }
+
+module "service_plan" {
+  source     = "../../modules/web/service_plan"
+  for_each   = var.service_plans
+  name       = each.key
+  settings   = each.value
+  depends_on = [module.resource_group]
+}
+
+module "linux_web_app" {
+  source          = "../../modules/web/linux_web_app"
+  for_each        = var.linux_web_apps
+  name            = each.key
+  settings        = each.value
+  service_plan_id = module.service_plan[each.value.service_plan_key].id
+  depends_on      = [module.resource_group, module.service_plan]
+}

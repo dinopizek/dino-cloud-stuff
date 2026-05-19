@@ -11,6 +11,12 @@ resource_groups = {
       ManagedBy = "Terraform"
     }
   }
+  rg-sc-umami-test-page-01 = {
+    location = "swedencentral"
+    tags = {
+      ManagedBy = "Terraform"
+    }
+  }
 }
 
 virtual_networks = {
@@ -143,6 +149,27 @@ postgresql_flexible_servers = {
 
     identity = {
       type = "SystemAssigned"
+    }
+  }
+}
+
+service_plans = {
+  sp-sc-umami-prod-01 = {
+    location            = "swedencentral"
+    resource_group_name = "rg-sc-umami-test-page-01"
+    os_type             = "Linux"
+    sku_name            = "F1"
+  }
+}
+
+linux_web_apps = {
+  lwa-sc-umami-prod-01 = {
+    location            = "swedencentral"
+    resource_group_name = "rg-sc-umami-test-page-01"
+    service_plan_key    = "sp-sc-umami-prod-01"
+
+    site_config = {
+      always_on = false
     }
   }
 }

@@ -33,3 +33,11 @@ variable "container_apps" {
 variable "postgresql_flexible_servers" {
   type = map(any)
 }
+
+variable "service_plans" {
+  type = map(any)
+}
+
+variable "linux_web_apps" {
+  type = map(any)
+}
