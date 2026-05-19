@@ -87,7 +87,7 @@ container_apps = {
   ca-sc-umami-prod-01 = {
     container_app_environment_key = "cae-sc-umami-prod-01"
     resource_group_name           = "rg-sc-umami-workload-prod-01"
-    revision_mode                 = "Single"
+    revision_mode                 = "Multiple"
     workload_profile_name         = "Consumption"
 
     template = {
