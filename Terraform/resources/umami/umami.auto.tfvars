@@ -29,7 +29,6 @@ subnets = {
     address_prefixes     = ["10.0.0.0/24"]
     resource_group_name  = "rg-sc-umami-network-prod-01"
     virtual_network_name = "vn-sc-umami-prod-01"
-    delegation           = null
   }
 }
 
