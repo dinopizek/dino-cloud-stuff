@@ -132,7 +132,7 @@ linux_virtual_machines = {
       ManagedBy = "Terraform"
     }
     admin_username                  = "azadmin"
-    admin_password                  = "JakoJakaLozinka!"
+    admin_password                  = "ChangeMe123!"
     disable_password_authentication = false
     network_interface_keys          = ["nic-vm-gewe-k3s-master-dino-01"]
     os_disk = {
@@ -155,7 +155,7 @@ linux_virtual_machines = {
       ManagedBy = "Terraform"
     }
     admin_username                  = "azadmin"
-    admin_password                  = "JakoJakaLozinka!"
+    admin_password                  = "ChangeMe123!"
     disable_password_authentication = false
     network_interface_keys          = ["nic-vm-gewe-k3s-worker-dino-01"]
     os_disk = {
@@ -178,7 +178,7 @@ linux_virtual_machines = {
       ManagedBy = "Terraform"
     }
     admin_username                  = "azadmin"
-    admin_password                  = "JakoJakaLozinka!"
+    admin_password                  = "ChangeMe123!"
     disable_password_authentication = false
     network_interface_keys          = ["nic-vm-gewe-k3s-worker-dino-02"]
     os_disk = {

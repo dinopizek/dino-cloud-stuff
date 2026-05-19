@@ -77,7 +77,7 @@ linux_virtual_machines = {
       ManagedBy = "Terraform"
     }
     admin_username                  = "dino"
-    admin_password                  = "JakoJakaLozinka!"
+    admin_password                  = "ChangeMe123!"
     disable_password_authentication = false
     network_interface_key           = "nic-vm-sc-terraform-lab-01"
     os_disk = {
