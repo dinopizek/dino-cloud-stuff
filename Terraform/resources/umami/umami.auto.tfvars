@@ -80,7 +80,7 @@ container_app_environments = {
   cae-sc-umami-prod-01 = {
     location              = "swedencentral"
     resource_group_name   = "rg-sc-umami-workload-prod-01"
-    public_network_access = "Disabled"
+    public_network_access = "Enabled"
 
     workload_profile = {
       name                  = "Consumption"
@@ -93,7 +93,7 @@ container_apps = {
   ca-sc-umami-prod-01 = {
     container_app_environment_key = "cae-sc-umami-prod-01"
     resource_group_name           = "rg-sc-umami-workload-prod-01"
-    revision_mode                 = "Multiple"
+    revision_mode                 = "Single"
     workload_profile_name         = "Consumption"
 
     template = {

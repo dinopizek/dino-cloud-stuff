@@ -13,8 +13,9 @@ resource "azurerm_container_app" "container_app" {
       memory = var.settings.template.container.memory
 
       env {
-        name        = var.settings.template.container.env.name
-        secret_name = var.settings.template.container.env.secret_name
+        name        = try(var.settings.template.container.env.name, null)
+        secret_name = try(var.settings.template.container.env.secret_name, null)
+        value       = try(var.settings.template.container.env.value, null)
       }
     }
     max_replicas = var.settings.template.max_replicas
@@ -34,7 +35,7 @@ resource "azurerm_container_app" "container_app" {
   }
 
   secret {
-    name  = var.settings.secret.name
-    value = var.settings.secret.value
+    name  = try(var.settings.secret.name, null)
+    value = try(var.settings.secret.value, null)
   }
 }
