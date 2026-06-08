@@ -6,8 +6,3 @@ variable "settings" {
   description = "(Required) configuration object describing the resource configuration"
   type        = any
 }
-
-variable "zones" {
-  type    = list(string)
-  default = null
-}

@@ -7,7 +7,6 @@ variable "settings" {
   type        = any
 }
 
-variable "zones" {
-  type    = list(string)
-  default = null
+variable "remote_virtual_network_id" {
+  type = string
 }

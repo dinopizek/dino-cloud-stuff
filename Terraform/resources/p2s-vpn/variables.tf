@@ -1,0 +1,51 @@
+variable "resource_groups" {
+  type = map(any)
+}
+
+variable "virtual_networks" {
+  type = map(any)
+}
+
+variable "subnets" {
+  type = map(any)
+}
+
+variable "network_security_groups" {
+  type = map(any)
+}
+
+variable "network_security_rules" {
+  type = map(any)
+}
+
+variable "subnet_network_security_group_associations" {
+  type = map(any)
+}
+
+variable "route_tables" {
+  type = map(any)
+}
+
+variable "subnet_route_table_associations" {
+  type = map(any)
+}
+
+variable "public_ips" {
+  type = map(any)
+}
+
+variable "vpn_gateways" {
+  type = map(any)
+}
+
+variable "network_interfaces" {
+  type = map(any)
+}
+
+variable "linux_virtual_machines" {
+  type = map(any)
+}
+
+variable "virtual_network_peerings" {
+  type = map(any)
+}
