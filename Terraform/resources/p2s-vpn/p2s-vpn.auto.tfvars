@@ -212,7 +212,7 @@ network_interfaces = {
       ManagedBy = "Terraform"
     }
     ip_configuration = {
-      name                          = "internal"
+      name                          = "main-ipconfig"
       subnet_key                    = "sn-vm-gewe-p2s-spoke1-dino-01"
       private_ip_address_allocation = "Dynamic"
     }
@@ -224,7 +224,7 @@ network_interfaces = {
       ManagedBy = "Terraform"
     }
     ip_configuration = {
-      name                          = "internal"
+      name                          = "main-ipconfig"
       subnet_key                    = "sn-vm-gewe-p2s-spoke2-dino-01"
       private_ip_address_allocation = "Dynamic"
     }
