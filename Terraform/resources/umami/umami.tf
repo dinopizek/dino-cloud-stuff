@@ -42,7 +42,6 @@ module "subnet_network_security_group_association" {
   for_each                  = var.subnet_network_security_group_associations
   subnet_id                 = try(module.subnet[each.value.subnet_key].id, module.delegated_subnet[each.value.delegated_subnet_key].id)
   network_security_group_id = module.network_security_group[each.value.network_security_group_key].id
-  depends_on                = [module.subnet, module.delegated_subnet, module.network_security_group]
 }
 
 module "container_app_environment" {
@@ -51,7 +50,7 @@ module "container_app_environment" {
   name                     = each.key
   settings                 = each.value
   infrastructure_subnet_id = try(module.subnet[each.value.infrastructure_subnet_key].id, module.delegated_subnet[each.value.infrastructure_subnet_key].id, null)
-  depends_on               = [module.resource_group, module.subnet, module.delegated_subnet]
+  depends_on               = [module.resource_group]
 }
 
 module "container_app" {
@@ -60,7 +59,6 @@ module "container_app" {
   name                         = each.key
   settings                     = each.value
   container_app_environment_id = module.container_app_environment[each.value.container_app_environment_key].id
-  depends_on                   = [module.container_app_environment]
 }
 
 module "postgresql_flexible_server" {
@@ -86,5 +84,5 @@ module "linux_web_app" {
   name            = each.key
   settings        = each.value
   service_plan_id = module.service_plan[each.value.service_plan_key].id
-  depends_on      = [module.resource_group, module.service_plan]
+  depends_on      = [module.resource_group]
 }

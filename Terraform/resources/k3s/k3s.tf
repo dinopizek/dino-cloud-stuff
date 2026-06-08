@@ -44,7 +44,6 @@ module "network_interface" {
   settings             = each.value
   subnet_id            = module.subnet[each.value.ip_configuration.subnet_key].id
   public_ip_address_id = module.public_ip[each.value.ip_configuration.public_ip_address_key].id
-  depends_on           = [module.subnet, module.network_security_group, module.public_ip]
 }
 
 module "network_interface_security_group_association" {
@@ -52,7 +51,6 @@ module "network_interface_security_group_association" {
   for_each                  = var.network_security_group_associations
   network_interface_id      = module.network_interface[each.value.network_interface_key].id
   network_security_group_id = module.network_security_group[each.value.network_security_group_key].id
-  depends_on                = [module.network_interface, module.network_security_group]
 }
 
 module "linux_virtual_machine" {
@@ -61,7 +59,6 @@ module "linux_virtual_machine" {
   name                  = each.key
   settings              = each.value
   network_interface_ids = [for nic_key in each.value.network_interface_keys : module.network_interface[nic_key].id]
-  depends_on            = [module.network_interface]
 }
 
 module "network_security_rule" {

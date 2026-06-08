@@ -31,4 +31,5 @@ variable "linux_virtual_machines" {
 }
 
 variable "network_security_rules" {
+  type = map(any)
 }
