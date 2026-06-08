@@ -132,6 +132,11 @@ route_tables = {
         name           = "to-vpn-clients"
         address_prefix = "172.16.200.0/24"
         next_hop_type  = "VirtualNetworkGateway"
+      },
+      {
+        name           = "to-spoke2"
+        address_prefix = "10.12.1.0/24"
+        next_hop_type  = "VirtualNetworkGateway"
       }
     ]
   }
@@ -146,6 +151,11 @@ route_tables = {
       {
         name           = "to-vpn-clients"
         address_prefix = "172.16.200.0/24"
+        next_hop_type  = "VirtualNetworkGateway"
+      },
+      {
+        name           = "to-spoke1"
+        address_prefix = "10.11.1.0/24"
         next_hop_type  = "VirtualNetworkGateway"
       }
     ]
