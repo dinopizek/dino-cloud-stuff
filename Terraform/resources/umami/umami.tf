@@ -62,7 +62,7 @@ module "container_app" {
 }
 
 module "postgresql_flexible_server" {
-  source     = "../../modules/sql/postgresql_flexible_server"
+  source     = "../../modules/database/postgresql_flexible_server"
   for_each   = var.postgresql_flexible_servers
   name       = each.key
   settings   = each.value
