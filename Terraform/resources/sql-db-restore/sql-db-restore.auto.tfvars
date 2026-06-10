@@ -11,7 +11,7 @@ resource_groups = {
       ManagedBy = "Terraform"
     }
   }
-  rg-gewe-restore-dino-01 = {
+  rg-gewe-restorepoint-dino-01 = {
     location = "germanywestcentral"
     tags = {
       ManagedBy = "Terraform"
