@@ -169,27 +169,6 @@ windows_virtual_machines = {
   }
 }
 
-mssql_virtual_machines = {
-  vm-gewe-sqlrestore-dino-01 = {
-    vm_key                = "vm-gewe-sqlrestore-dino-01"
-    sql_license_type      = "PAYG"
-    sql_connectivity_type = "PRIVATE"
-    sql_connectivity_port = 1433
-    tags = {
-      ManagedBy = "Terraform"
-    }
-  }
-  vm-gewe-sqlrestore-dino-02 = {
-    vm_key                = "vm-gewe-sqlrestore-dino-02"
-    sql_license_type      = "PAYG"
-    sql_connectivity_type = "PRIVATE"
-    sql_connectivity_port = 1433
-    tags = {
-      ManagedBy = "Terraform"
-    }
-  }
-}
-
 recovery_services_vaults = {
   rsv-gewe-sqlrestore-dino-01 = {
     location            = "germanywestcentral"
@@ -198,34 +177,5 @@ recovery_services_vaults = {
     tags = {
       ManagedBy = "Terraform"
     }
-  }
-}
-
-backup_policies_vm = {
-  bp-weekly-gewe-sqlrestore-dino-01 = {
-    vault_key = "rsv-gewe-sqlrestore-dino-01"
-    timezone  = "Central European Standard Time"
-    backup = {
-      frequency = "Weekly"
-      time      = "12:00"
-      weekdays  = ["Monday"]
-    }
-    retention_weekly = {
-      count    = 4
-      weekdays = ["Monday"]
-    }
-  }
-}
-
-backup_protected_vms = {
-  vm-gewe-sqlrestore-dino-01 = {
-    vm_key            = "vm-gewe-sqlrestore-dino-01"
-    vault_key         = "rsv-gewe-sqlrestore-dino-01"
-    backup_policy_key = "bp-weekly-gewe-sqlrestore-dino-01"
-  }
-  vm-gewe-sqlrestore-dino-02 = {
-    vm_key            = "vm-gewe-sqlrestore-dino-02"
-    vault_key         = "rsv-gewe-sqlrestore-dino-01"
-    backup_policy_key = "bp-weekly-gewe-sqlrestore-dino-01"
   }
 }

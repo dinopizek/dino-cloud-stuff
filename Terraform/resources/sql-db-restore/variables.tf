@@ -34,18 +34,6 @@ variable "windows_virtual_machines" {
   type = map(any)
 }
 
-variable "mssql_virtual_machines" {
-  type = map(any)
-}
-
 variable "recovery_services_vaults" {
-  type = map(any)
-}
-
-variable "backup_policies_vm" {
-  type = map(any)
-}
-
-variable "backup_protected_vms" {
   type = map(any)
 }

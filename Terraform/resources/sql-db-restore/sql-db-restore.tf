@@ -69,36 +69,10 @@ module "windows_virtual_machine" {
   network_interface_ids = [module.network_interface[each.value.network_interface_key].id]
 }
 
-module "mssql_virtual_machine" {
-  source             = "../../modules/database/mssql_virtual_machine"
-  for_each           = var.mssql_virtual_machines
-  virtual_machine_id = module.windows_virtual_machine[each.value.vm_key].id
-  settings           = each.value
-}
-
 module "recovery_services_vault" {
   source     = "../../modules/recovery_services/recovery_services_vault"
   for_each   = var.recovery_services_vaults
   name       = each.key
   settings   = each.value
   depends_on = [module.resource_group]
-}
-
-module "backup_policy_vm" {
-  source              = "../../modules/recovery_services/backup_policy_vm"
-  for_each            = var.backup_policies_vm
-  name                = each.key
-  settings            = each.value
-  resource_group_name = var.recovery_services_vaults[each.value.vault_key].resource_group_name
-  recovery_vault_name = each.value.vault_key
-  depends_on          = [module.recovery_services_vault]
-}
-
-module "backup_protected_vm" {
-  source              = "../../modules/recovery_services/backup_protected_vm"
-  for_each            = var.backup_protected_vms
-  resource_group_name = var.recovery_services_vaults[each.value.vault_key].resource_group_name
-  recovery_vault_name = each.value.vault_key
-  source_vm_id        = module.windows_virtual_machine[each.value.vm_key].id
-  backup_policy_id    = module.backup_policy_vm[each.value.backup_policy_key].id
 }
