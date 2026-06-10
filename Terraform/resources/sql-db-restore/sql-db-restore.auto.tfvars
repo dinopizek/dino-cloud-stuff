@@ -5,7 +5,7 @@ resource_groups = {
       ManagedBy = "Terraform"
     }
   }
-  rg-gewe-backup-dino-01 = {
+  rg-gewe-rsv-dino-01 = {
     location = "germanywestcentral"
     tags = {
       ManagedBy = "Terraform"
@@ -193,7 +193,7 @@ mssql_virtual_machines = {
 recovery_services_vaults = {
   rsv-gewe-sqlrestore-dino-01 = {
     location            = "germanywestcentral"
-    resource_group_name = "rg-gewe-backup-dino-01"
+    resource_group_name = "rg-gewe-rsv-dino-01"
     sku                 = "Standard"
     tags = {
       ManagedBy = "Terraform"
