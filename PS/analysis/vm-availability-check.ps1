@@ -1,11 +1,13 @@
 # Check all available publishers
-Get-AzVMImagePublisher -Location "SouthAfricaNorth"
+Get-AzVMImagePublisher -Location "eastus2"
 
 # Check all available offers for a specific publisher
-Get-AzVMImageOffer -Location "SouthAfricaNorth" -PublisherName "MicrosoftWindowsServer"
+Get-AzVMImageOffer -Location "eastus2" -PublisherName "MicrosoftWindowsServer"
 
 # Check all available SKUs for a specific offer and publisher
-Get-AzVMImageSku -Location "SouthAfricaNorth" -PublisherName "MicrosoftWindowsServer" -Offer "windowsserver2022"
+Get-AzVMImageSku -Location "eastus2" -PublisherName "MicrosoftWindowsServer" -Offer "WindowsServer"
 
 # Check VM SKU availabilityfor a specific location
-Get-AzComputeResourceSku -Location "SouthAfricaNorth"
+Get-AzComputeResourceSku -Location "eastus2"
+
+Get-AzComputeResourceSku -Location "eastus2" | Where-Object { $_.ResourceType -eq "virtualMachines" -and $_.Name -like "*D4als*" }
