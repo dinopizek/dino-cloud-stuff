@@ -5,7 +5,7 @@ resource_groups = {
       ManagedBy = "Terraform"
     }
   }
-  rg-gewe-rsv-dino-01 = {
+  rg-gewe-backup-dino-01 = {
     location = "germanywestcentral"
     tags = {
       ManagedBy = "Terraform"
@@ -20,7 +20,7 @@ resource_groups = {
 }
 
 virtual_networks = {
-  vn-gewe-sqlrestore-dino-01 = {
+  vn-gewe-restoredemo-dino-01 = {
     address_space       = ["10.20.0.0/16"]
     location            = "germanywestcentral"
     resource_group_name = "rg-gewe-workload-dino-01"
@@ -31,15 +31,15 @@ virtual_networks = {
 }
 
 subnets = {
-  sn-vm-gewe-sqlrestore-dino-01 = {
+  sn-vm-gewe-restoredemo-dino-01 = {
     address_prefixes     = ["10.20.1.0/24"]
     resource_group_name  = "rg-gewe-workload-dino-01"
-    virtual_network_name = "vn-gewe-sqlrestore-dino-01"
+    virtual_network_name = "vn-gewe-restoredemo-dino-01"
   }
 }
 
 network_security_groups = {
-  nsg-sn-vm-gewe-sqlrestore-dino-01 = {
+  nsg-sn-vm-gewe-restoredemo-dino-01 = {
     location            = "germanywestcentral"
     resource_group_name = "rg-gewe-workload-dino-01"
     tags = {
@@ -59,19 +59,19 @@ network_security_rules = {
     source_address_prefix       = "195.20.153.0/24"
     destination_address_prefix  = "*"
     resource_group_name         = "rg-gewe-workload-dino-01"
-    network_security_group_name = "nsg-sn-vm-gewe-sqlrestore-dino-01"
+    network_security_group_name = "nsg-sn-vm-gewe-restoredemo-dino-01"
   }
 }
 
 subnet_network_security_group_associations = {
   vm-subnet-nsg = {
-    subnet_key                 = "sn-vm-gewe-sqlrestore-dino-01"
-    network_security_group_key = "nsg-sn-vm-gewe-sqlrestore-dino-01"
+    subnet_key                 = "sn-vm-gewe-restoredemo-dino-01"
+    network_security_group_key = "nsg-sn-vm-gewe-restoredemo-dino-01"
   }
 }
 
 public_ips = {
-  pip-vm-gewe-sqlrestore-dino-01 = {
+  pip-vm-gewe-restoredemo-dino-01 = {
     location            = "germanywestcentral"
     resource_group_name = "rg-gewe-workload-dino-01"
     allocation_method   = "Static"
@@ -80,7 +80,7 @@ public_ips = {
       ManagedBy = "Terraform"
     }
   }
-  pip-vm-gewe-sqlrestore-dino-02 = {
+  pip-vm-gewe-restoredemo-dino-02 = {
     location            = "germanywestcentral"
     resource_group_name = "rg-gewe-workload-dino-01"
     allocation_method   = "Static"
@@ -92,7 +92,7 @@ public_ips = {
 }
 
 network_interfaces = {
-  nic-vm-gewe-sqlrestore-dino-01 = {
+  nic-vm-gewe-restoredemo-dino-01 = {
     location            = "germanywestcentral"
     resource_group_name = "rg-gewe-workload-dino-01"
     tags = {
@@ -100,12 +100,12 @@ network_interfaces = {
     }
     ip_configuration = {
       name                          = "main-ipconfig"
-      subnet_key                    = "sn-vm-gewe-sqlrestore-dino-01"
-      public_ip_address_key         = "pip-vm-gewe-sqlrestore-dino-01"
+      subnet_key                    = "sn-vm-gewe-restoredemo-dino-01"
+      public_ip_address_key         = "pip-vm-gewe-restoredemo-dino-01"
       private_ip_address_allocation = "Dynamic"
     }
   }
-  nic-vm-gewe-sqlrestore-dino-02 = {
+  nic-vm-gewe-restoredemo-dino-02 = {
     location            = "germanywestcentral"
     resource_group_name = "rg-gewe-workload-dino-01"
     tags = {
@@ -113,27 +113,27 @@ network_interfaces = {
     }
     ip_configuration = {
       name                          = "main-ipconfig"
-      subnet_key                    = "sn-vm-gewe-sqlrestore-dino-01"
-      public_ip_address_key         = "pip-vm-gewe-sqlrestore-dino-02"
+      subnet_key                    = "sn-vm-gewe-restoredemo-dino-01"
+      public_ip_address_key         = "pip-vm-gewe-restoredemo-dino-02"
       private_ip_address_allocation = "Dynamic"
     }
   }
 }
 
 windows_virtual_machines = {
-  vm-gewe-sqlrestore-dino-01 = {
+  vm-gewe-restoredemo-dino-01 = {
     location              = "germanywestcentral"
     resource_group_name   = "rg-gewe-workload-dino-01"
-    size                  = "Standard_B2ms"
+    size                  = "Standard_B4ms"
     admin_username        = "azadmin"
     admin_password        = "ChangeMe123!"
     computer_name         = "vmgewesql01"
-    network_interface_key = "nic-vm-gewe-sqlrestore-dino-01"
+    network_interface_key = "nic-vm-gewe-restoredemo-dino-01"
     tags = {
       ManagedBy = "Terraform"
     }
     os_disk = {
-      name                 = "osdisk-vm-gewe-sqlrestore-dino-01"
+      name                 = "osdisk-vm-gewe-restoredemo-dino-01"
       caching              = "ReadWrite"
       storage_account_type = "Standard_LRS"
     }
@@ -144,19 +144,19 @@ windows_virtual_machines = {
       version   = "latest"
     }
   }
-  vm-gewe-sqlrestore-dino-02 = {
+  vm-gewe-restoredemo-dino-02 = {
     location              = "germanywestcentral"
     resource_group_name   = "rg-gewe-workload-dino-01"
-    size                  = "Standard_B2ms"
+    size                  = "Standard_B4ms"
     admin_username        = "azadmin"
     admin_password        = "ChangeMe123!"
     computer_name         = "vmgewesql02"
-    network_interface_key = "nic-vm-gewe-sqlrestore-dino-02"
+    network_interface_key = "nic-vm-gewe-restoredemo-dino-02"
     tags = {
       ManagedBy = "Terraform"
     }
     os_disk = {
-      name                 = "osdisk-vm-gewe-sqlrestore-dino-02"
+      name                 = "osdisk-vm-gewe-restoredemo-dino-02"
       caching              = "ReadWrite"
       storage_account_type = "Standard_LRS"
     }
@@ -170,9 +170,9 @@ windows_virtual_machines = {
 }
 
 recovery_services_vaults = {
-  rsv-gewe-sqlrestore-dino-01 = {
+  rsv-gewe-restoredemo-dino-01 = {
     location            = "germanywestcentral"
-    resource_group_name = "rg-gewe-rsv-dino-01"
+    resource_group_name = "rg-gewe-backup-dino-01"
     sku                 = "Standard"
     tags = {
       ManagedBy = "Terraform"
