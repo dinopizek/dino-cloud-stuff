@@ -3,7 +3,7 @@ param virtualApplianceIp string = '100.100.100.100'
 param vnetRange string = '10.254.74.0/23'
 param subnetRange string = '10.254.74.0/28'
 
-resource routeTables_rt_use2_dr_cons_app_prod_01_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
+resource routeTable 'Microsoft.Network/routeTables@2025-07-01' = {
   name: routeTableName
   location: 'eastus2'
   tags: {
