@@ -1,0 +1,52 @@
+/interface bridge
+add name=bridge-main
+/interface wifi
+set [ find default-name=wifi2 ] configuration.country=Croatia .mode=ap .ssid=\
+    mikrotik-2ghz disabled=no name=wifi-2g
+set [ find default-name=wifi1 ] configuration.country=Croatia .mode=station \
+    .ssid=1cc1a6 disabled=no name=wifi-5g
+/interface list
+add name=WAN
+add name=LAN
+/ip pool
+add name=dhcp-pool-main ranges=10.0.0.10-10.0.0.254
+add name=pool-eth1 ranges=10.0.1.10-10.0.1.254
+add name=pool-eth2 ranges=10.0.2.10-10.0.2.254
+add name=pool-eth3 ranges=10.0.3.10-10.0.3.254
+/ip dhcp-server
+add address-pool=dhcp-pool-main interface=bridge-main name=dhcp-main
+add address-pool=pool-eth1 interface=ether1 name=dhcp-eth1
+add address-pool=pool-eth2 interface=ether2 name=dhcp-eth2
+add address-pool=pool-eth3 interface=ether3 name=dhcp-eth3
+/interface bridge port
+add bridge=bridge-main interface=wifi-2g
+add bridge=bridge-main interface=ether4
+add bridge=bridge-main interface=ether5
+/ip neighbor discovery-settings
+set discover-interface-list=!dynamic
+/interface list member
+add interface=ether2 list=LAN
+add interface=ether3 list=LAN
+add interface=ether4 list=LAN
+add interface=ether5 list=LAN
+add interface=wifi-2g list=LAN
+add interface=ether1 list=LAN
+add interface=wifi-5g list=WAN
+/ip address
+add address=10.0.0.1/24 interface=bridge-main network=10.0.0.0
+add address=10.0.1.1/24 interface=ether1 network=10.0.1.0
+add address=10.0.2.1/24 interface=ether2 network=10.0.2.0
+add address=10.0.3.1/24 interface=ether3 network=10.0.3.0
+/ip dhcp-client
+add interface=wifi-5g name=client1
+/ip dhcp-server network
+add address=10.0.0.0/24 dns-server=1.1.1.1,8.8.8.8 gateway=10.0.0.1
+add address=10.0.1.0/24 dns-server=1.1.1.1,8.8.8.8 gateway=10.0.1.1
+add address=10.0.2.0/24 dns-server=1.1.1.1,8.8.8.8 gateway=10.0.2.1
+add address=10.0.3.0/24 dns-server=1.1.1.1,8.8.8.8 gateway=10.0.3.1
+/ip firewall nat
+add action=masquerade chain=srcnat out-interface-list=WAN
+/ipv6 nd
+set [ find default=yes ] advertise-dns=yes
+/system clock
+set time-zone-name=Europe/Zagreb
