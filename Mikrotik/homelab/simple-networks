@@ -40,10 +40,12 @@ add address=10.0.3.1/24 interface=ether3 network=10.0.3.0
 /ip dhcp-client
 add interface=wifi-5g name=client1
 /ip dhcp-server network
-add address=10.0.0.0/24 dns-server=1.1.1.1,8.8.8.8 gateway=10.0.0.1
-add address=10.0.1.0/24 dns-server=1.1.1.1,8.8.8.8 gateway=10.0.1.1
-add address=10.0.2.0/24 dns-server=1.1.1.1,8.8.8.8 gateway=10.0.2.1
-add address=10.0.3.0/24 dns-server=1.1.1.1,8.8.8.8 gateway=10.0.3.1
+add address=10.0.0.0/24 dns-server=10.0.0.1 gateway=10.0.0.1
+add address=10.0.1.0/24 dns-server=10.0.0.1 gateway=10.0.1.1
+add address=10.0.2.0/24 dns-server=10.0.0.1 gateway=10.0.2.1
+add address=10.0.3.0/24 dns-server=10.0.0.1 gateway=10.0.3.1
+/ip dns
+set allow-remote-requests=yes servers=1.1.1.1,8.8.8.8
 /ip firewall nat
 add action=masquerade chain=srcnat out-interface-list=WAN
 /ipv6 nd
