@@ -3,23 +3,26 @@ add admin-mac=D0:EA:11:62:FB:5D auto-mac=no comment=defconf name=bridge
 add name=bridge-guest
 add name=bridge-guest2
 /interface wifi
-set [ find default-name=wifi1 ] channel.skip-dfs-channels=10min-cac \
-    configuration.country=Croatia .mode=ap .ssid=mikrotik-home disabled=no \
-    name=wifi-home security.authentication-types=\
-    wpa2-psk,wpa2-psk-sha2,wpa3-psk .ft=yes .ft-over-ds=yes
 set [ find default-name=wifi2 ] channel.skip-dfs-channels=10min-cac \
     configuration.country=Croatia .mode=station-bridge .ssid=mikrotik-p2p \
-    disabled=no name=wifi-p2p security.authentication-types=wpa2-psk,wpa3-psk \
-    .ft=yes .ft-over-ds=yes
+    disabled=no name=wifi-p2p security.authentication-types=wpa3-psk .ft=yes \
+    .ft-over-ds=yes
+/interface list
+add comment=defconf name=LAN
+add name=GUEST
+/interface wifi channel
+add disabled=no name=wifi-home-channel width=20mhz
+/interface wifi
+set [ find default-name=wifi1 ] channel=wifi-home-channel \
+    channel.skip-dfs-channels=10min-cac configuration.country=Croatia .mode=ap \
+    .ssid=mikrotik-home disabled=no name=wifi-home \
+    security.authentication-types=wpa3-psk .ft=no .ft-over-ds=no
 add configuration.mode=ap .ssid=mikrotik-guest disabled=no mac-address=\
     D2:EA:11:62:FB:5E master-interface=wifi-home name=wifi-guest \
     security.authentication-types=wpa2-psk,wpa2-psk-sha2,wpa3-psk
 add configuration.mode=ap .ssid=mikrotik-guest2 disabled=no mac-address=\
     D2:EA:11:62:FB:5F master-interface=wifi-home name=wifi-guest2 \
     security.authentication-types=wpa2-psk,wpa2-psk-sha2,wpa3-psk
-/interface list
-add comment=defconf name=LAN
-add name=GUEST
 /ip pool
 add name=guest-pool ranges=10.10.10.10-10.10.10.254
 add name=guest2-pool ranges=10.10.20.10-10.10.20.254
