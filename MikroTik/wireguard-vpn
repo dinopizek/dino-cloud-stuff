@@ -1,0 +1,75 @@
+/interface bridge
+add name=bridge-main
+/interface wifi
+set [ find default-name=wifi2 ] configuration.country=Croatia .mode=ap .ssid=\
+    mikrotik-2ghz disabled=no name=wifi-2g security.authentication-types=\
+    wpa2-psk,wpa3-psk
+set [ find default-name=wifi1 ] configuration.country=Croatia .mode=station \
+    .ssid=1cc1a6 disabled=no name=wifi-5g security.authentication-types=\
+    wpa2-psk,wpa3-psk
+/interface wireguard
+add listen-port=50436 mtu=1420 name=wireguard
+/interface list
+add name=WAN
+add name=LAN
+/ip pool
+add name=dhcp-pool-main ranges=10.0.0.10-10.0.0.254
+/ip dhcp-server
+add address-pool=dhcp-pool-main interface=bridge-main name=dhcp-main
+/interface bridge port
+add bridge=bridge-main interface=wifi-2g
+add bridge=bridge-main interface=ether4
+add bridge=bridge-main interface=ether5
+add bridge=bridge-main interface=ether1
+add bridge=bridge-main interface=ether2
+add bridge=bridge-main interface=ether3
+/ip neighbor discovery-settings
+set discover-interface-list=!dynamic
+/ipv6 settings
+set disable-ipv6=yes
+/interface list member
+add interface=wifi-2g list=LAN
+add interface=wifi-5g list=WAN
+add interface=wireguard list=LAN
+add interface=bridge-main list=LAN
+/interface wireguard peers
+add allowed-address=0.0.0.0/0 client-allowed-address=::/0 endpoint-address=\
+    91.99.206.0 endpoint-port=51820 interface=wireguard name=vps \
+    persistent-keepalive=25s public-key=\
+    "P7u7Cg4OqQt1mciryUoHADhAPPfExV7ZuSIPKOEq/jY="
+/ip address
+add address=10.0.0.1/24 interface=bridge-main network=10.0.0.0
+add address=10.100.100.2/24 interface=wireguard network=10.100.100.0
+/ip dhcp-client
+add interface=wifi-5g name=client1
+/ip dhcp-server network
+add address=10.0.0.0/24 dns-server=10.0.0.1 gateway=10.0.0.1
+/ip dns
+set allow-remote-requests=yes servers=1.1.1.1,8.8.8.8
+/ip firewall filter
+add action=accept chain=input comment=\
+    "defconf: accept established,related,untracked" connection-state=\
+    established,related,untracked
+add action=drop chain=input comment="defconf: drop invalid" connection-state=\
+    invalid
+add action=accept chain=input comment="defconf: accept ICMP" protocol=icmp
+add action=drop chain=input comment="defconf: drop all not coming from LAN" \
+    in-interface-list=!LAN
+add action=fasttrack-connection chain=forward comment="defconf: fasttrack" \
+    connection-state=established,related
+add action=accept chain=forward comment=\
+    "defconf: accept established,related, untracked" connection-state=\
+    established,related,untracked
+add action=drop chain=forward comment="defconf: drop invalid" \
+    connection-state=invalid
+add action=drop chain=forward comment=\
+    "defconf: drop all from WAN not DSTNATed" connection-nat-state=!dstnat \
+    in-interface-list=WAN
+/ip firewall nat
+add action=masquerade chain=srcnat out-interface-list=WAN
+add action=masquerade chain=srcnat comment="NAT LAN into WG" dst-address=\
+    10.100.100.0/24 out-interface=wireguard
+/ipv6 nd
+set [ find default=yes ] advertise-dns=yes
+/system clock
+set time-zone-name=Europe/Zagreb
