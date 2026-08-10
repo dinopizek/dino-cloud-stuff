@@ -1,0 +1,5 @@
+variable "settings" {
+}
+
+variable "name" {
+}
