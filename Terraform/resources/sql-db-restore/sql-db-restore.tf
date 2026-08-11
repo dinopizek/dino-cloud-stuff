@@ -70,7 +70,7 @@ module "windows_virtual_machine" {
 }
 
 module "recovery_services_vault" {
-  source     = "../../modules/recovery_services/recovery_services_vault"
+  source     = "../../modules/backup/recovery_services_vault"
   for_each   = var.recovery_services_vaults
   name       = each.key
   settings   = each.value
