@@ -1,43 +1,19 @@
 targetScope = 'resourceGroup'
 
-// rev-sub-data-platform-hr-shared
-// rg-use2-data-hr-monitor-prod-01
-
-/*
-Standalone hardcoded Bicep file for the Management Monitoring workload.
-Creates: Log Analytics Workspace, Application Insights, Storage Account,
-App Service Plan (Flex Consumption), Function App, 3 custom LAW tables (Power BI),
-and Power BI custom DCR (Logs Ingestion API, no DCE required).
-*/
-
-//********************************************
-// Variables
-//********************************************
-
 var location = 'eastus2'
-
 var logAnalyticsWorkspaceName = 'law-use2-data-hr-operational-prod-01'
 var applicationInsightsName = 'ai-use2-data-hr-operational-prod-01'
 var storageAccountName = 'sause2revfadatahr01'
 var appServicePlanName = 'fsp-use2-data-hr-operational-prod-01'
 var functionAppName = 'fa-use2-data-hr-operational-prod-01'
 var dcrName = 'dcr-use2-data-hr-powerbi-prod-01'
-
 var deploymentStorageContainerName = 'fa-package'
 var storageBlobDataOwnerRoleId = 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b'
 var monitoringMetricsPublisherId = '3913510d-42f4-4e42-8a64-420c390055eb'
 
-//********************************************
-// Log Analytics Workspace
-//********************************************
-
 resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2023-09-01' existing = {
   name: logAnalyticsWorkspaceName
 }
-
-//********************************************
-// Application Insights
-//********************************************
 
 resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: applicationInsightsName
@@ -49,10 +25,6 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
     DisableLocalAuth: true
   }
 }
-
-//********************************************
-// Storage Account
-//********************************************
 
 resource storage 'Microsoft.Storage/storageAccounts@2023-05-01' = {
   name: storageAccountName
@@ -85,10 +57,6 @@ resource storage 'Microsoft.Storage/storageAccounts@2023-05-01' = {
   }
 }
 
-//********************************************
-// App Service Plan (Flex Consumption)
-//********************************************
-
 resource appServicePlan 'Microsoft.Web/serverfarms@2024-04-01' = {
   name: appServicePlanName
   location: location
@@ -101,10 +69,6 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2024-04-01' = {
     reserved: true
   }
 }
-
-//********************************************
-// Function App
-//********************************************
 
 resource functionApp 'Microsoft.Web/sites@2024-04-01' = {
   name: functionAppName
@@ -148,10 +112,6 @@ resource functionApp 'Microsoft.Web/sites@2024-04-01' = {
   }
 }
 
-//********************************************
-// Role Assignments
-//********************************************
-
 resource roleAssignmentBlobDataOwner 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
   name: guid(subscription().id, storage.id, functionApp.id, 'Storage Blob Data Owner')
   scope: storage
@@ -171,10 +131,6 @@ resource roleAssignmentMonitoringMetricsPublisher 'Microsoft.Authorization/roleA
     principalType: 'ServicePrincipal'
   }
 }
-
-//********************************************
-// Custom LAW Tables - Power BI
-//********************************************
 
 resource tablePowerBiWorkspaces 'Microsoft.OperationalInsights/workspaces/tables@2022-10-01' = {
   parent: logAnalytics
@@ -257,10 +213,6 @@ resource tablePowerBiRefreshHistory 'Microsoft.OperationalInsights/workspaces/ta
     }
   }
 }
-
-//********************************************
-// Data Collection Rule - Power BI (Logs Ingestion API)
-//********************************************
 
 resource dcrPowerBi 'Microsoft.Insights/dataCollectionRules@2024-03-11' = {
   name: dcrName
@@ -358,10 +310,6 @@ resource dcrPowerBi 'Microsoft.Insights/dataCollectionRules@2024-03-11' = {
   }
   dependsOn: [tablePowerBiDatasets, tablePowerBiRefreshHistory, tablePowerBiWorkspaces]
 }
-
-//********************************************
-// Outputs
-//********************************************
 
 output resourceIds object = {
   logAnalyticsWorkspaceId: logAnalytics.id

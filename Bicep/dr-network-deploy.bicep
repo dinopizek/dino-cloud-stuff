@@ -1,36 +1,36 @@
-param networkWatchers_nw_usc_dr_prod_01_name string = 'nw-usc-dr-prod-01'
-param virtualNetworks_vn_usc_dr_prod_01_name string = 'vn-usc-dr-prod-01'
-param routeTables_rt_usc_dr_corp_sap_dev_01_name string = 'rt-usc-dr-corp-sap-dev-01'
-param routeTables_rt_usc_dr_sec_pki_prod_01_name string = 'rt-usc-dr-sec-pki-prod-01'
-param routeTables_rt_usc_dr_cons_app_prod_01_name string = 'rt-usc-dr-cons-app-prod-01'
-param routeTables_rt_usc_dr_corp_sap_prod_01_name string = 'rt-usc-dr-corp-sap-prod-01'
-param routeTables_rt_usc_dr_spc_loft_prod_01_name string = 'rt-usc-dr-spc-loft-prod-01'
-param routeTables_rt_usc_dr_sec_tools_prod_01_name string = 'rt-usc-dr-sec-tools-prod-01'
-param routeTables_rt_usc_dr_fin_vertex_prod_01_name string = 'rt-usc-dr-fin-vertex-prod-01'
-param routeTables_rt_usc_dr_sec_syslog_prod_01_name string = 'rt-usc-dr-sec-syslog-prod-01'
-param routeTables_rt_usc_dr_corp_sqlsvc_prod_01_name string = 'rt-usc-dr-corp-sqlsvc-prod-01'
-param routeTables_rt_usc_dr_corp_micrstg_prod_01_name string = 'rt-usc-dr-corp-micrstg-prod-01'
-param routeTables_rt_usc_dr_mgmt_panorama_prod_01_name string = 'rt-usc-dr-mgmt-panorama-prod-01'
-param routeTables_rt_usc_dr_spc_knowportal_prod_01_name string = 'rt-usc-dr-spc-knowportal-prod-01'
-param routeTables_rt_usc_dr_cons_globalsales_prod_01_name string = 'rt-usc-dr-cons-globalsales-prod-01'
-param routeTables_rt_usc_dr_corp_oneinbeauty_prod_01_name string = 'rt-usc-dr-corp-oneinbeauty-prod-01'
-param networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_sap_dev_01_name string = 'nsg-vn-usc-dr-prod-01-sn-corp-sap-dev-01'
-param networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_sec_pki_prod_01_name string = 'nsg-vn-usc-dr-prod-01-sn-sec-pki-prod-01'
-param networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_cons_app_prod_01_name string = 'nsg-vn-usc-dr-prod-01-sn-cons-app-prod-01'
-param networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_sap_prod_01_name string = 'nsg-vn-usc-dr-prod-01-sn-corp-sap-prod-01'
-param networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_spc_loft_prod_01_name string = 'nsg-vn-usc-dr-prod-01-sn-spc-loft-prod-01'
-param networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_sec_tools_prod_01_name string = 'nsg-vn-usc-dr-prod-01-sn-sec-tools-prod-01'
-param networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_fin_vertex_prod_01_name string = 'nsg-vn-usc-dr-prod-01-sn-fin-vertex-prod-01'
-param networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_sec_syslog_prod_01_name string = 'nsg-vn-usc-dr-prod-01-sn-sec-syslog-prod-01'
-param networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_sqlsvc_prod_01_name string = 'nsg-vn-usc-dr-prod-01-sn-corp-sqlsvc-prod-01'
-param networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_micrstg_prod_01_name string = 'nsg-vn-usc-dr-prod-01-sn-corp-micrstg-prod-01'
-param networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_mgmt_panorama_prod_01_name string = 'nsg-vn-usc-dr-prod-01-sn-mgmt-panorama-prod-01'
-param networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_spc_knowportal_prod_01_name string = 'nsg-vn-usc-dr-prod-01-sn-spc-knowportal-prod-01'
-param networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_cons_globalsales_prod_01_name string = 'nsg-vn-usc-dr-prod-01-sn-cons-globalsales-prod-01'
-param networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_oneinbeauty_prod_01_name string = 'nsg-vn-usc-dr-prod-01-sn-corp-oneinbeauty-prod-01'
+param networkWatcherName string = 'nw-usc-dr-prod-01'
+param virtualNetworkName string = 'vn-usc-dr-prod-01'
+param routeTableCorpSapDevName string = 'rt-usc-dr-corp-sap-dev-01'
+param routeTableSecPkiName string = 'rt-usc-dr-sec-pki-prod-01'
+param routeTableConsAppName string = 'rt-usc-dr-cons-app-prod-01'
+param routeTableCorpSapName string = 'rt-usc-dr-corp-sap-prod-01'
+param routeTableSpcLoftName string = 'rt-usc-dr-spc-loft-prod-01'
+param routeTableSecToolsName string = 'rt-usc-dr-sec-tools-prod-01'
+param routeTableFinVertexName string = 'rt-usc-dr-fin-vertex-prod-01'
+param routeTableSecSyslogName string = 'rt-usc-dr-sec-syslog-prod-01'
+param routeTableCorpSqlsvcName string = 'rt-usc-dr-corp-sqlsvc-prod-01'
+param routeTableCorpMicrstgName string = 'rt-usc-dr-corp-micrstg-prod-01'
+param routeTableMgmtPanoramaName string = 'rt-usc-dr-mgmt-panorama-prod-01'
+param routeTableSpcKnowportalName string = 'rt-usc-dr-spc-knowportal-prod-01'
+param routeTableConsGlobalsalesName string = 'rt-usc-dr-cons-globalsales-prod-01'
+param routeTableCorpOneinbeautyName string = 'rt-usc-dr-corp-oneinbeauty-prod-01'
+param nsgCorpSapDevName string = 'nsg-vn-usc-dr-prod-01-sn-corp-sap-dev-01'
+param nsgSecPkiName string = 'nsg-vn-usc-dr-prod-01-sn-sec-pki-prod-01'
+param nsgConsAppName string = 'nsg-vn-usc-dr-prod-01-sn-cons-app-prod-01'
+param nsgCorpSapName string = 'nsg-vn-usc-dr-prod-01-sn-corp-sap-prod-01'
+param nsgSpcLoftName string = 'nsg-vn-usc-dr-prod-01-sn-spc-loft-prod-01'
+param nsgSecToolsName string = 'nsg-vn-usc-dr-prod-01-sn-sec-tools-prod-01'
+param nsgFinVertexName string = 'nsg-vn-usc-dr-prod-01-sn-fin-vertex-prod-01'
+param nsgSecSyslogName string = 'nsg-vn-usc-dr-prod-01-sn-sec-syslog-prod-01'
+param nsgCorpSqlsvcName string = 'nsg-vn-usc-dr-prod-01-sn-corp-sqlsvc-prod-01'
+param nsgCorpMicrstgName string = 'nsg-vn-usc-dr-prod-01-sn-corp-micrstg-prod-01'
+param nsgMgmtPanoramaName string = 'nsg-vn-usc-dr-prod-01-sn-mgmt-panorama-prod-01'
+param nsgSpcKnowportalName string = 'nsg-vn-usc-dr-prod-01-sn-spc-knowportal-prod-01'
+param nsgConsGlobalsalesName string = 'nsg-vn-usc-dr-prod-01-sn-cons-globalsales-prod-01'
+param nsgCorpOneinbeautyName string = 'nsg-vn-usc-dr-prod-01-sn-corp-oneinbeauty-prod-01'
 
-resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_cons_app_prod_01_name_resource 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_cons_app_prod_01_name
+resource nsgConsApp 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
+  name: nsgConsAppName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -41,8 +41,8 @@ resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_cons_app_prod_01_name_re
   }
 }
 
-resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_cons_globalsales_prod_01_name_resource 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_cons_globalsales_prod_01_name
+resource nsgConsGlobalsales 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
+  name: nsgConsGlobalsalesName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -53,8 +53,8 @@ resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_cons_globalsales_prod_01
   }
 }
 
-resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_micrstg_prod_01_name_resource 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_micrstg_prod_01_name
+resource nsgCorpMicrstg 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
+  name: nsgCorpMicrstgName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -65,8 +65,8 @@ resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_micrstg_prod_01_nam
   }
 }
 
-resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_oneinbeauty_prod_01_name_resource 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_oneinbeauty_prod_01_name
+resource nsgCorpOneinbeauty 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
+  name: nsgCorpOneinbeautyName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -77,8 +77,8 @@ resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_oneinbeauty_prod_01
   }
 }
 
-resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_sap_dev_01_name_resource 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_sap_dev_01_name
+resource nsgCorpSapDev 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
+  name: nsgCorpSapDevName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -89,8 +89,8 @@ resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_sap_dev_01_name_res
   }
 }
 
-resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_sap_prod_01_name_resource 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_sap_prod_01_name
+resource nsgCorpSap 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
+  name: nsgCorpSapName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -101,8 +101,8 @@ resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_sap_prod_01_name_re
   }
 }
 
-resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_sqlsvc_prod_01_name_resource 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_sqlsvc_prod_01_name
+resource nsgCorpSqlsvc 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
+  name: nsgCorpSqlsvcName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -113,8 +113,8 @@ resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_sqlsvc_prod_01_name
   }
 }
 
-resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_fin_vertex_prod_01_name_resource 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_fin_vertex_prod_01_name
+resource nsgFinVertex 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
+  name: nsgFinVertexName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -125,8 +125,8 @@ resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_fin_vertex_prod_01_name_
   }
 }
 
-resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_mgmt_panorama_prod_01_name_resource 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_mgmt_panorama_prod_01_name
+resource nsgMgmtPanorama 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
+  name: nsgMgmtPanoramaName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -137,8 +137,8 @@ resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_mgmt_panorama_prod_01_na
   }
 }
 
-resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_sec_pki_prod_01_name_resource 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_sec_pki_prod_01_name
+resource nsgSecPki 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
+  name: nsgSecPkiName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -149,8 +149,8 @@ resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_sec_pki_prod_01_name_res
   }
 }
 
-resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_sec_syslog_prod_01_name_resource 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_sec_syslog_prod_01_name
+resource nsgSecSyslog 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
+  name: nsgSecSyslogName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -161,8 +161,8 @@ resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_sec_syslog_prod_01_name_
   }
 }
 
-resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_sec_tools_prod_01_name_resource 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_sec_tools_prod_01_name
+resource nsgSecTools 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
+  name: nsgSecToolsName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -173,8 +173,8 @@ resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_sec_tools_prod_01_name_r
   }
 }
 
-resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_spc_knowportal_prod_01_name_resource 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_spc_knowportal_prod_01_name
+resource nsgSpcKnowportal 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
+  name: nsgSpcKnowportalName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -185,8 +185,8 @@ resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_spc_knowportal_prod_01_n
   }
 }
 
-resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_spc_loft_prod_01_name_resource 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_spc_loft_prod_01_name
+resource nsgSpcLoft 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
+  name: nsgSpcLoftName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -197,8 +197,8 @@ resource networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_spc_loft_prod_01_name_re
   }
 }
 
-resource networkWatchers_nw_usc_dr_prod_01_name_resource 'Microsoft.Network/networkWatchers@2025-07-01' = {
-  name: networkWatchers_nw_usc_dr_prod_01_name
+resource networkWatcher 'Microsoft.Network/networkWatchers@2025-07-01' = {
+  name: networkWatcherName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -207,8 +207,8 @@ resource networkWatchers_nw_usc_dr_prod_01_name_resource 'Microsoft.Network/netw
   properties: {}
 }
 
-resource routeTables_rt_usc_dr_cons_app_prod_01_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: routeTables_rt_usc_dr_cons_app_prod_01_name
+resource routeTableConsApp 'Microsoft.Network/routeTables@2025-07-01' = {
+  name: routeTableConsAppName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -244,8 +244,8 @@ resource routeTables_rt_usc_dr_cons_app_prod_01_name_resource 'Microsoft.Network
   }
 }
 
-resource routeTables_rt_usc_dr_cons_globalsales_prod_01_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: routeTables_rt_usc_dr_cons_globalsales_prod_01_name
+resource routeTableConsGlobalsales 'Microsoft.Network/routeTables@2025-07-01' = {
+  name: routeTableConsGlobalsalesName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -281,8 +281,8 @@ resource routeTables_rt_usc_dr_cons_globalsales_prod_01_name_resource 'Microsoft
   }
 }
 
-resource routeTables_rt_usc_dr_corp_micrstg_prod_01_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: routeTables_rt_usc_dr_corp_micrstg_prod_01_name
+resource routeTableCorpMicrstg 'Microsoft.Network/routeTables@2025-07-01' = {
+  name: routeTableCorpMicrstgName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -318,8 +318,8 @@ resource routeTables_rt_usc_dr_corp_micrstg_prod_01_name_resource 'Microsoft.Net
   }
 }
 
-resource routeTables_rt_usc_dr_corp_oneinbeauty_prod_01_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: routeTables_rt_usc_dr_corp_oneinbeauty_prod_01_name
+resource routeTableCorpOneinbeauty 'Microsoft.Network/routeTables@2025-07-01' = {
+  name: routeTableCorpOneinbeautyName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -355,8 +355,8 @@ resource routeTables_rt_usc_dr_corp_oneinbeauty_prod_01_name_resource 'Microsoft
   }
 }
 
-resource routeTables_rt_usc_dr_corp_sap_dev_01_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: routeTables_rt_usc_dr_corp_sap_dev_01_name
+resource routeTableCorpSapDev 'Microsoft.Network/routeTables@2025-07-01' = {
+  name: routeTableCorpSapDevName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -392,8 +392,8 @@ resource routeTables_rt_usc_dr_corp_sap_dev_01_name_resource 'Microsoft.Network/
   }
 }
 
-resource routeTables_rt_usc_dr_corp_sap_prod_01_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: routeTables_rt_usc_dr_corp_sap_prod_01_name
+resource routeTableCorpSap 'Microsoft.Network/routeTables@2025-07-01' = {
+  name: routeTableCorpSapName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -429,8 +429,8 @@ resource routeTables_rt_usc_dr_corp_sap_prod_01_name_resource 'Microsoft.Network
   }
 }
 
-resource routeTables_rt_usc_dr_corp_sqlsvc_prod_01_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: routeTables_rt_usc_dr_corp_sqlsvc_prod_01_name
+resource routeTableCorpSqlsvc 'Microsoft.Network/routeTables@2025-07-01' = {
+  name: routeTableCorpSqlsvcName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -466,8 +466,8 @@ resource routeTables_rt_usc_dr_corp_sqlsvc_prod_01_name_resource 'Microsoft.Netw
   }
 }
 
-resource routeTables_rt_usc_dr_fin_vertex_prod_01_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: routeTables_rt_usc_dr_fin_vertex_prod_01_name
+resource routeTableFinVertex 'Microsoft.Network/routeTables@2025-07-01' = {
+  name: routeTableFinVertexName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -503,8 +503,8 @@ resource routeTables_rt_usc_dr_fin_vertex_prod_01_name_resource 'Microsoft.Netwo
   }
 }
 
-resource routeTables_rt_usc_dr_mgmt_panorama_prod_01_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: routeTables_rt_usc_dr_mgmt_panorama_prod_01_name
+resource routeTableMgmtPanorama 'Microsoft.Network/routeTables@2025-07-01' = {
+  name: routeTableMgmtPanoramaName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -540,8 +540,8 @@ resource routeTables_rt_usc_dr_mgmt_panorama_prod_01_name_resource 'Microsoft.Ne
   }
 }
 
-resource routeTables_rt_usc_dr_sec_pki_prod_01_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: routeTables_rt_usc_dr_sec_pki_prod_01_name
+resource routeTableSecPki 'Microsoft.Network/routeTables@2025-07-01' = {
+  name: routeTableSecPkiName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -577,8 +577,8 @@ resource routeTables_rt_usc_dr_sec_pki_prod_01_name_resource 'Microsoft.Network/
   }
 }
 
-resource routeTables_rt_usc_dr_sec_syslog_prod_01_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: routeTables_rt_usc_dr_sec_syslog_prod_01_name
+resource routeTableSecSyslog 'Microsoft.Network/routeTables@2025-07-01' = {
+  name: routeTableSecSyslogName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -614,8 +614,8 @@ resource routeTables_rt_usc_dr_sec_syslog_prod_01_name_resource 'Microsoft.Netwo
   }
 }
 
-resource routeTables_rt_usc_dr_sec_tools_prod_01_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: routeTables_rt_usc_dr_sec_tools_prod_01_name
+resource routeTableSecTools 'Microsoft.Network/routeTables@2025-07-01' = {
+  name: routeTableSecToolsName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -651,8 +651,8 @@ resource routeTables_rt_usc_dr_sec_tools_prod_01_name_resource 'Microsoft.Networ
   }
 }
 
-resource routeTables_rt_usc_dr_spc_knowportal_prod_01_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: routeTables_rt_usc_dr_spc_knowportal_prod_01_name
+resource routeTableSpcKnowportal 'Microsoft.Network/routeTables@2025-07-01' = {
+  name: routeTableSpcKnowportalName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -688,8 +688,8 @@ resource routeTables_rt_usc_dr_spc_knowportal_prod_01_name_resource 'Microsoft.N
   }
 }
 
-resource routeTables_rt_usc_dr_spc_loft_prod_01_name_resource 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: routeTables_rt_usc_dr_spc_loft_prod_01_name
+resource routeTableSpcLoft 'Microsoft.Network/routeTables@2025-07-01' = {
+  name: routeTableSpcLoftName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -725,8 +725,8 @@ resource routeTables_rt_usc_dr_spc_loft_prod_01_name_resource 'Microsoft.Network
   }
 }
 
-resource virtualNetworks_vn_usc_dr_prod_01_name_resource 'Microsoft.Network/virtualNetworks@2025-07-01' = {
-  name: virtualNetworks_vn_usc_dr_prod_01_name
+resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
+  name: virtualNetworkName
   location: 'centralus'
   tags: {
     criticality: 'high'
@@ -760,10 +760,10 @@ resource virtualNetworks_vn_usc_dr_prod_01_name_resource 'Microsoft.Network/virt
             '10.254.74.0/28'
           ]
           networkSecurityGroup: {
-            id: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_cons_app_prod_01_name_resource.id
+            id: nsgConsApp.id
           }
           routeTable: {
-            id: routeTables_rt_usc_dr_cons_app_prod_01_name_resource.id
+            id: routeTableConsApp.id
           }
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
@@ -777,10 +777,10 @@ resource virtualNetworks_vn_usc_dr_prod_01_name_resource 'Microsoft.Network/virt
             '10.254.74.16/28'
           ]
           networkSecurityGroup: {
-            id: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_cons_globalsales_prod_01_name_resource.id
+            id: nsgConsGlobalsales.id
           }
           routeTable: {
-            id: routeTables_rt_usc_dr_cons_globalsales_prod_01_name_resource.id
+            id: routeTableConsGlobalsales.id
           }
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
@@ -794,10 +794,10 @@ resource virtualNetworks_vn_usc_dr_prod_01_name_resource 'Microsoft.Network/virt
             '10.254.74.32/28'
           ]
           networkSecurityGroup: {
-            id: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_sap_dev_01_name_resource.id
+            id: nsgCorpSapDev.id
           }
           routeTable: {
-            id: routeTables_rt_usc_dr_corp_sap_dev_01_name_resource.id
+            id: routeTableCorpSapDev.id
           }
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
@@ -811,10 +811,10 @@ resource virtualNetworks_vn_usc_dr_prod_01_name_resource 'Microsoft.Network/virt
             '10.254.74.48/28'
           ]
           networkSecurityGroup: {
-            id: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_micrstg_prod_01_name_resource.id
+            id: nsgCorpMicrstg.id
           }
           routeTable: {
-            id: routeTables_rt_usc_dr_corp_micrstg_prod_01_name_resource.id
+            id: routeTableCorpMicrstg.id
           }
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
@@ -828,10 +828,10 @@ resource virtualNetworks_vn_usc_dr_prod_01_name_resource 'Microsoft.Network/virt
             '10.254.74.64/28'
           ]
           networkSecurityGroup: {
-            id: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_oneinbeauty_prod_01_name_resource.id
+            id: nsgCorpOneinbeauty.id
           }
           routeTable: {
-            id: routeTables_rt_usc_dr_corp_oneinbeauty_prod_01_name_resource.id
+            id: routeTableCorpOneinbeauty.id
           }
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
@@ -845,10 +845,10 @@ resource virtualNetworks_vn_usc_dr_prod_01_name_resource 'Microsoft.Network/virt
             '10.254.74.80/28'
           ]
           networkSecurityGroup: {
-            id: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_sap_prod_01_name_resource.id
+            id: nsgCorpSap.id
           }
           routeTable: {
-            id: routeTables_rt_usc_dr_corp_sap_prod_01_name_resource.id
+            id: routeTableCorpSap.id
           }
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
@@ -862,10 +862,10 @@ resource virtualNetworks_vn_usc_dr_prod_01_name_resource 'Microsoft.Network/virt
             '10.254.74.96/28'
           ]
           networkSecurityGroup: {
-            id: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_corp_sqlsvc_prod_01_name_resource.id
+            id: nsgCorpSqlsvc.id
           }
           routeTable: {
-            id: routeTables_rt_usc_dr_corp_sqlsvc_prod_01_name_resource.id
+            id: routeTableCorpSqlsvc.id
           }
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
@@ -879,10 +879,10 @@ resource virtualNetworks_vn_usc_dr_prod_01_name_resource 'Microsoft.Network/virt
             '10.254.74.112/28'
           ]
           networkSecurityGroup: {
-            id: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_sec_pki_prod_01_name_resource.id
+            id: nsgSecPki.id
           }
           routeTable: {
-            id: routeTables_rt_usc_dr_sec_pki_prod_01_name_resource.id
+            id: routeTableSecPki.id
           }
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
@@ -896,10 +896,10 @@ resource virtualNetworks_vn_usc_dr_prod_01_name_resource 'Microsoft.Network/virt
             '10.254.74.128/28'
           ]
           networkSecurityGroup: {
-            id: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_sec_tools_prod_01_name_resource.id
+            id: nsgSecTools.id
           }
           routeTable: {
-            id: routeTables_rt_usc_dr_sec_tools_prod_01_name_resource.id
+            id: routeTableSecTools.id
           }
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
@@ -913,10 +913,10 @@ resource virtualNetworks_vn_usc_dr_prod_01_name_resource 'Microsoft.Network/virt
             '10.254.74.144/29'
           ]
           networkSecurityGroup: {
-            id: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_fin_vertex_prod_01_name_resource.id
+            id: nsgFinVertex.id
           }
           routeTable: {
-            id: routeTables_rt_usc_dr_fin_vertex_prod_01_name_resource.id
+            id: routeTableFinVertex.id
           }
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
@@ -930,10 +930,10 @@ resource virtualNetworks_vn_usc_dr_prod_01_name_resource 'Microsoft.Network/virt
             '10.254.74.152/29'
           ]
           networkSecurityGroup: {
-            id: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_sec_syslog_prod_01_name_resource.id
+            id: nsgSecSyslog.id
           }
           routeTable: {
-            id: routeTables_rt_usc_dr_sec_syslog_prod_01_name_resource.id
+            id: routeTableSecSyslog.id
           }
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
@@ -947,10 +947,10 @@ resource virtualNetworks_vn_usc_dr_prod_01_name_resource 'Microsoft.Network/virt
             '10.254.74.160/29'
           ]
           networkSecurityGroup: {
-            id: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_mgmt_panorama_prod_01_name_resource.id
+            id: nsgMgmtPanorama.id
           }
           routeTable: {
-            id: routeTables_rt_usc_dr_mgmt_panorama_prod_01_name_resource.id
+            id: routeTableMgmtPanorama.id
           }
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
@@ -964,10 +964,10 @@ resource virtualNetworks_vn_usc_dr_prod_01_name_resource 'Microsoft.Network/virt
             '10.254.74.168/29'
           ]
           networkSecurityGroup: {
-            id: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_spc_knowportal_prod_01_name_resource.id
+            id: nsgSpcKnowportal.id
           }
           routeTable: {
-            id: routeTables_rt_usc_dr_spc_knowportal_prod_01_name_resource.id
+            id: routeTableSpcKnowportal.id
           }
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
@@ -981,10 +981,10 @@ resource virtualNetworks_vn_usc_dr_prod_01_name_resource 'Microsoft.Network/virt
             '10.254.74.176/29'
           ]
           networkSecurityGroup: {
-            id: networkSecurityGroups_nsg_vn_usc_dr_prod_01_sn_spc_loft_prod_01_name_resource.id
+            id: nsgSpcLoft.id
           }
           routeTable: {
-            id: routeTables_rt_usc_dr_spc_loft_prod_01_name_resource.id
+            id: routeTableSpcLoft.id
           }
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
