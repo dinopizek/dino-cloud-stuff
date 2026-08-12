@@ -121,4 +121,62 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   }
 }
 
+resource publicIPAddresses 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
+  name: 'pip-sc-connectivity-prod-01-vpngw'
+  location: location
+  sku: {
+    name: 'Standard'
+    tier: 'Regional'
+  }
+  zones: [
+    '1'
+    '2'
+    '3'
+  ]
+  properties: {
+    publicIPAddressVersion: 'IPv4'
+    publicIPAllocationMethod: 'Static'
+    idleTimeoutInMinutes: 4
+    ipTags: []
+  }
+}
+
+resource virtualNetworkGateway 'Microsoft.Network/virtualNetworkGateways@2025-07-01' = {
+  name: 'vgw-sc-connectivity-prod-01'
+  location: location
+  tags: tags
+  properties: {
+    ipConfigurations: [
+      {
+        name: 'default'
+        properties: {
+          privateIPAllocationMethod: 'Dynamic'
+          publicIPAddress: {
+            id: publicIPAddresses.id
+          }
+          subnet: {
+            id: '${virtualNetwork.id}/subnets/GatewaySubnet'
+          }
+        }
+      }
+    ]
+    natRules: []
+    enableBgpRouteTranslationForNat: false
+    disableIPSecReplayProtection: false
+    sku: {
+      name: 'VpnGw1AZ'
+      tier: 'VpnGw1AZ'
+    }
+    gatewayType: 'Vpn'
+    vpnType: 'RouteBased'
+    vpnGatewayGeneration: 'Generation2'
+    enableBgp: false
+    enableHighBandwidthVpnGateway: false
+    activeActive: false
+    allowRemoteVnetTraffic: false
+    allowVirtualWanTraffic: false
+  }
+}
+
 output vnetId string = virtualNetwork.id
+output vpnGatewayId string = virtualNetworkGateway.id
