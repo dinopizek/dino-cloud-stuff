@@ -66,9 +66,6 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
         }
       }
       {
-        // The 4th Palo Alto subnet in the WEU reference has no NSG or route
-        // table attached - most likely an HA sync interface. CONFIRM the
-        // exact name and purpose (portal truncates it to "sn-paloalto...").
         name: 'sn-paloalto-ha-01'
         properties: {
           addressPrefixes: [
@@ -88,8 +85,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
         }
       }
       {
-        // CONFIRM exact name - portal truncates it to "sn-dns-in-...".
-        name: 'sn-dns-inbound-01'
+        name: 'sn-dns-in-hub-01'
         properties: {
           addressPrefixes: [
             '10.247.2.64/26'
@@ -105,8 +101,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
         }
       }
       {
-        // CONFIRM exact name - portal truncates it to "sn-dns-out...".
-        name: 'sn-dns-outbound-01'
+        name: 'sn-dns-out-hub-01'
         properties: {
           addressPrefixes: [
             '10.247.2.128/26'
