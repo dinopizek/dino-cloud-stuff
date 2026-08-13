@@ -3,7 +3,6 @@ param tags object = {
   criticality: 'high'
   domain: 'itoperations'
 }
-param vnetAddressPrefix string = '10.247.0.0/22'
 param rtPaUntrustId string
 param rtPaTrustId string
 param rtPaMgmtId string
@@ -13,13 +12,13 @@ param nsgPaTrustId string
 param nsgPaMgmtId string
 
 resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
-  name: 'vnet-sc-connectivity-prod-01'
+  name: 'vnet-sdc-connectivity-prod-01'
   location: location
   tags: tags
   properties: {
     addressSpace: {
       addressPrefixes: [
-        vnetAddressPrefix
+        '10.248.0.0/16'
       ]
     }
     subnets: [
@@ -27,7 +26,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
         name: 'sn-paloalto-untrust-01'
         properties: {
           addressPrefixes: [
-            '10.247.0.0/24'
+            '10.248.0.0/25'
           ]
           networkSecurityGroup: {
             id: nsgPaUntrustId
@@ -41,7 +40,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
         name: 'sn-paloalto-trust-01'
         properties: {
           addressPrefixes: [
-            '10.247.1.0/24'
+            '10.248.0.128/27'
           ]
           networkSecurityGroup: {
             id: nsgPaTrustId
@@ -55,7 +54,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
         name: 'sn-paloalto-mgmt-01'
         properties: {
           addressPrefixes: [
-            '10.247.2.0/28'
+            '10.248.0.160/28'
           ]
           networkSecurityGroup: {
             id: nsgPaMgmtId
@@ -66,54 +65,14 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
         }
       }
       {
-        name: 'sn-paloalto-ha-01'
-        properties: {
-          addressPrefixes: [
-            '10.247.2.16/28'
-          ]
-        }
-      }
-      {
         name: 'GatewaySubnet'
         properties: {
           addressPrefixes: [
-            '10.247.2.32/27'
+            '10.248.0.192/27'
           ]
           routeTable: {
             id: rtGatewayId
           }
-        }
-      }
-      {
-        name: 'sn-dns-in-hub-01'
-        properties: {
-          addressPrefixes: [
-            '10.247.2.64/26'
-          ]
-          delegations: [
-            {
-              name: 'dnsResolvers'
-              properties: {
-                serviceName: 'Microsoft.Network/dnsResolvers'
-              }
-            }
-          ]
-        }
-      }
-      {
-        name: 'sn-dns-out-hub-01'
-        properties: {
-          addressPrefixes: [
-            '10.247.2.128/26'
-          ]
-          delegations: [
-            {
-              name: 'dnsResolvers'
-              properties: {
-                serviceName: 'Microsoft.Network/dnsResolvers'
-              }
-            }
-          ]
         }
       }
     ]
@@ -122,7 +81,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
 }
 
 resource publicIPAddresses 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
-  name: 'pip-sc-connectivity-prod-01-vpngw'
+  name: 'pip-sdc-connectivity-prod-01-vpngw'
   location: location
   sku: {
     name: 'Standard'
@@ -142,7 +101,7 @@ resource publicIPAddresses 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
 }
 
 resource virtualNetworkGateway 'Microsoft.Network/virtualNetworkGateways@2025-07-01' = {
-  name: 'vgw-sc-connectivity-prod-01'
+  name: 'vgw-sdc-connectivity-prod-01'
   location: location
   tags: tags
   properties: {

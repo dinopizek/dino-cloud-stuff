@@ -5,7 +5,7 @@ param tags object = {
 }
 
 resource rtPaUntrust 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sc-connectivity-prod-01-PA-Untrust-rt'
+  name: 'vnet-sdc-connectivity-prod-01-PA-Untrust-rt'
   location: location
   tags: tags
   properties: {
@@ -15,7 +15,7 @@ resource rtPaUntrust 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource rtPaTrust 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sc-connectivity-prod-01-PA-Trust-rt'
+  name: 'vnet-sdc-connectivity-prod-01-PA-Trust-rt'
   location: location
   tags: tags
   properties: {
@@ -25,7 +25,7 @@ resource rtPaTrust 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource rtPaMgmt 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sc-connectivity-prod-01-PA-MGMT-rt'
+  name: 'vnet-sdc-connectivity-prod-01-PA-MGMT-rt'
   location: location
   tags: tags
   properties: {
@@ -35,7 +35,7 @@ resource rtPaMgmt 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource rtGateway 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sc-connectivity-prod-01-gw-rt'
+  name: 'vnet-sdc-connectivity-prod-01-gw-rt'
   location: location
   tags: tags
   properties: {
@@ -45,7 +45,7 @@ resource rtGateway 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource rtElasticsearch 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sc-connectivity-prod-01-Elasticsearch-rt'
+  name: 'vnet-sdc-connectivity-prod-01-Elasticsearch-rt'
   location: location
   tags: tags
   properties: {
@@ -55,7 +55,7 @@ resource rtElasticsearch 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource rtPrivateDmz 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sc-connectivity-prod-01-PrivateDMZ-rt'
+  name: 'vnet-sdc-connectivity-prod-01-PrivateDMZ-rt'
   location: location
   tags: tags
   properties: {
@@ -65,7 +65,7 @@ resource rtPrivateDmz 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource rtProduction 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sc-connectivity-prod-01-production-rt'
+  name: 'vnet-sdc-connectivity-prod-01-production-rt'
   location: location
   tags: tags
   properties: {
@@ -75,7 +75,7 @@ resource rtProduction 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource rtPublicDmz 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sc-connectivity-prod-01-PublicDMZ-rt'
+  name: 'vnet-sdc-connectivity-prod-01-PublicDMZ-rt'
   location: location
   tags: tags
   properties: {
@@ -85,7 +85,7 @@ resource rtPublicDmz 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource rtTestDev 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sc-connectivity-prod-01-TestDev-rt'
+  name: 'vnet-sdc-connectivity-prod-01-TestDev-rt'
   location: location
   tags: tags
   properties: {
@@ -95,7 +95,7 @@ resource rtTestDev 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource nsgPaUntrust 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: 'nsg-vn-sc-connectivity-prod-01-sn-paloalto-untrust-01'
+  name: 'nsg-vn-sdc-connectivity-prod-01-sn-paloalto-untrust-01'
   location: location
   tags: tags
   properties: {
@@ -104,7 +104,7 @@ resource nsgPaUntrust 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
 }
 
 resource nsgPaTrust 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: 'nsg-vn-sc-connectivity-prod-01-sn-paloalto-trust-01'
+  name: 'nsg-vn-sdc-connectivity-prod-01-sn-paloalto-trust-01'
   location: location
   tags: tags
   properties: {
@@ -113,7 +113,7 @@ resource nsgPaTrust 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
 }
 
 resource nsgPaMgmt 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: 'nsg-vn-sc-connectivity-prod-01-sn-paloalto-mgmt-01'
+  name: 'nsg-vn-sdc-connectivity-prod-01-sn-paloalto-mgmt-01'
   location: location
   tags: tags
   properties: {

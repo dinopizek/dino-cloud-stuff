@@ -3,12 +3,12 @@ targetScope = 'subscription'
 param location string = 'swedencentral'
 
 resource rgPaloAlto 'Microsoft.Resources/resourceGroups@2024-03-01' = {
-  name: 'rg-sc-paloalto-prod-01'
+  name: 'rg-sdc-paloalto-prod-01'
   location: location
 }
 
 resource rgConnectivity 'Microsoft.Resources/resourceGroups@2024-03-01' = {
-  name: 'rg-sc-connectivity-prod-01'
+  name: 'rg-sdc-connectivity-prod-01'
   location: location
 }
 
