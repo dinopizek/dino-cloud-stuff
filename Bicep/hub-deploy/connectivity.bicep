@@ -19,13 +19,14 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
     privateEndpointVNetPolicies: 'Disabled'
     addressSpace: {
       addressPrefixes: [
-        '10.248.0.0/16'
+        '10.248.0.0/22'
       ]
     }
     subnets: [
       {
         name: 'sn-paloalto-untrust-01'
         properties: {
+          defaultOutboundAccess: false
           addressPrefixes: [
             '10.248.0.0/25'
           ]
@@ -40,6 +41,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
       {
         name: 'sn-paloalto-trust-01'
         properties: {
+          defaultOutboundAccess: false
           addressPrefixes: [
             '10.248.0.128/27'
           ]
@@ -54,6 +56,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
       {
         name: 'sn-paloalto-mgmt-01'
         properties: {
+          defaultOutboundAccess: false
           addressPrefixes: [
             '10.248.0.160/28'
           ]
@@ -68,6 +71,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
       {
         name: 'GatewaySubnet'
         properties: {
+          defaultOutboundAccess: false
           addressPrefixes: [
             '10.248.0.192/27'
           ]
