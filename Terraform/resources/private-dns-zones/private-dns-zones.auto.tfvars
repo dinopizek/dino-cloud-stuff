@@ -358,347 +358,347 @@ private_dns_zones = {
 }
 
 private_dns_zone_virtual_network_links = {
-  pdnslink1 = {
+  eastus2-data-privatelink-azurecr-io-dns-link = {
     private_dns_zone_key = "eastus2_data_privatelink_azurecr_io"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink2 = {
+  privatelink-eastus2-azmk8s-io-dns-link = {
     private_dns_zone_key = "privatelink_eastus2_azmk8s_io"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink3 = {
+  privatelink-eastus2-azurecontainerapps-io-dns-link = {
     private_dns_zone_key = "privatelink_eastus2_azurecontainerapps_io"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink4 = {
+  privatelink-eastus2-kusto-windows-net-dns-link = {
     private_dns_zone_key = "privatelink_eastus2_kusto_windows_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink5 = {
+  privatelink-adf-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_adf_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink6 = {
+  privatelink-afs-azure-net-dns-link = {
     private_dns_zone_key = "privatelink_afs_azure_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink7 = {
+  privatelink-agentsvc-azure-automation-net-dns-link = {
     private_dns_zone_key = "privatelink_agentsvc_azure_automation_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink8 = {
+  privatelink-analysis-windows-net-dns-link = {
     private_dns_zone_key = "privatelink_analysis_windows_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink9 = {
+  privatelink-api-azureml-ms-dns-link = {
     private_dns_zone_key = "privatelink_api_azureml_ms"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink10 = {
+  privatelink-appconfig-io-dns-link = {
     private_dns_zone_key = "privatelink_appconfig_io"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink11 = {
+  privatelink-arc-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_arc_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink12 = {
+  privatelink-attest-azure-net-dns-link = {
     private_dns_zone_key = "privatelink_attest_azure_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink13 = {
+  privatelink-autoheal-trafficmanager-net-dns-link = {
     private_dns_zone_key = "privatelink_autoheal_trafficmanager_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink14 = {
+  privatelink-automation-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_automation_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink15 = {
+  privatelink-azconfig-io-dns-link = {
     private_dns_zone_key = "privatelink_azconfig_io"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink16 = {
+  privatelink-azure-api-net-dns-link = {
     private_dns_zone_key = "privatelink_azure_api_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink17 = {
+  privatelink-azure-automation-net-dns-link = {
     private_dns_zone_key = "privatelink_azure_automation_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink18 = {
+  privatelink-azurecr-io-dns-link = {
     private_dns_zone_key = "privatelink_azurecr_io"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink19 = {
+  privatelink-azuredatabricks-net-dns-link = {
     private_dns_zone_key = "privatelink_azuredatabricks_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink20 = {
+  privatelink-azure-devices-net-dns-link = {
     private_dns_zone_key = "privatelink_azure_devices_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink21 = {
+  privatelink-azure-devices-provisioning-net-dns-link = {
     private_dns_zone_key = "privatelink_azure_devices_provisioning_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink22 = {
+  privatelink-azuredns-com-dns-link = {
     private_dns_zone_key = "privatelink_azuredns_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink23 = {
+  privatelink-azurehdinsight-net-dns-link = {
     private_dns_zone_key = "privatelink_azurehdinsight_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink24 = {
+  privatelink-azurekusto-windows-net-dns-link = {
     private_dns_zone_key = "privatelink_azurekusto_windows_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink25 = {
+  privatelink-azureml-ms-dns-link = {
     private_dns_zone_key = "privatelink_azureml_ms"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink26 = {
+  privatelink-azure-staticapps-net-dns-link = {
     private_dns_zone_key = "privatelink_azure_staticapps_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink27 = {
+  privatelink-azuresynapse-net-dns-link = {
     private_dns_zone_key = "privatelink_azuresynapse_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink28 = {
+  privatelink-azurewebsites-net-dns-link = {
     private_dns_zone_key = "privatelink_azurewebsites_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink29 = {
+  privatelink-batch-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_batch_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink30 = {
+  privatelink-blob-core-windows-net-dns-link = {
     private_dns_zone_key = "privatelink_blob_core_windows_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink31 = {
+  privatelink-cassandra-cosmos-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_cassandra_cosmos_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink32 = {
+  privatelink-cognitiveservices-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_cognitiveservices_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink33 = {
+  privatelink-communication-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_communication_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink34 = {
+  privatelink-database-windows-net-dns-link = {
     private_dns_zone_key = "privatelink_database_windows_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink35 = {
+  privatelink-datafactory-azure-net-dns-link = {
     private_dns_zone_key = "privatelink_datafactory_azure_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink36 = {
+  privatelink-dev-azuresynapse-net-dns-link = {
     private_dns_zone_key = "privatelink_dev_azuresynapse_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink37 = {
+  privatelink-dfs-core-windows-net-dns-link = {
     private_dns_zone_key = "privatelink_dfs_core_windows_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink38 = {
+  privatelink-dicom-azurehealthcareapis-com-dns-link = {
     private_dns_zone_key = "privatelink_dicom_azurehealthcareapis_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink39 = {
+  privatelink-digitaltwins-azure-net-dns-link = {
     private_dns_zone_key = "privatelink_digitaltwins_azure_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink40 = {
+  privatelink-directline-botframework-com-dns-link = {
     private_dns_zone_key = "privatelink_directline_botframework_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink41 = {
+  privatelink-documents-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_documents_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink42 = {
+  privatelink-eventgrid-azure-net-dns-link = {
     private_dns_zone_key = "privatelink_eventgrid_azure_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink43 = {
+  privatelink-eventhubs-servicebus-windows-net-dns-link = {
     private_dns_zone_key = "privatelink_eventhubs_servicebus_windows_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink44 = {
+  privatelink-fabric-microsoft-com-dns-link = {
     private_dns_zone_key = "privatelink_fabric_microsoft_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink45 = {
+  privatelink-fhir-azurehealthcareapis-com-dns-link = {
     private_dns_zone_key = "privatelink_fhir_azurehealthcareapis_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink46 = {
+  privatelink-file-core-windows-net-dns-link = {
     private_dns_zone_key = "privatelink_file_core_windows_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink47 = {
+  privatelink-fluidrelay-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_fluidrelay_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink48 = {
+  privatelink-grafana-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_grafana_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink49 = {
+  privatelink-gremlin-cosmos-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_gremlin_cosmos_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink50 = {
+  privatelink-guestconfiguration-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_guestconfiguration_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink51 = {
+  privatelink-his-arc-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_his_arc_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink52 = {
+  privatelink-iothub-net-dns-link = {
     private_dns_zone_key = "privatelink_iothub_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink53 = {
+  privatelink-keyvault-azure-net-dns-link = {
     private_dns_zone_key = "privatelink_keyvault_azure_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink54 = {
+  privatelink-kubernetesconfiguration-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_kubernetesconfiguration_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink55 = {
+  privatelink-managedhsm-azure-net-dns-link = {
     private_dns_zone_key = "privatelink_managedhsm_azure_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink56 = {
+  privatelink-mariadb-database-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_mariadb_database_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink57 = {
+  privatelink-media-azure-net-dns-link = {
     private_dns_zone_key = "privatelink_media_azure_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink58 = {
+  privatelink-migr-his-arc-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_migr_his_arc_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink59 = {
+  privatelink-mongo-cosmos-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_mongo_cosmos_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink60 = {
+  privatelink-monitor-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_monitor_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink61 = {
+  privatelink-mysql-database-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_mysql_database_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink62 = {
+  privatelink-notebooks-azure-net-dns-link = {
     private_dns_zone_key = "privatelink_notebooks_azure_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink63 = {
+  privatelink-ods-opinsights-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_ods_opinsights_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink64 = {
+  privatelink-oms-opinsights-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_oms_opinsights_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink65 = {
+  privatelink-openai-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_openai_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink66 = {
+  privatelink-openpolicyagent-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_openpolicyagent_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink67 = {
+  privatelink-pbidedicated-windows-net-dns-link = {
     private_dns_zone_key = "privatelink_pbidedicated_windows_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink68 = {
+  privatelink-postgres-database-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_postgres_database_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink69 = {
+  privatelink-prod-powerquery-microsoft-com-dns-link = {
     private_dns_zone_key = "privatelink_prod_powerquery_microsoft_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink70 = {
+  privatelink-purview-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_purview_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink71 = {
+  privatelink-purviewstudio-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_purviewstudio_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink72 = {
+  privatelink-queue-core-windows-net-dns-link = {
     private_dns_zone_key = "privatelink_queue_core_windows_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink73 = {
+  privatelink-redis-cache-windows-net-dns-link = {
     private_dns_zone_key = "privatelink_redis_cache_windows_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink74 = {
+  privatelink-redisenterprise-cache-azure-net-dns-link = {
     private_dns_zone_key = "privatelink_redisenterprise_cache_azure_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink75 = {
+  privatelink-search-windows-net-dns-link = {
     private_dns_zone_key = "privatelink_search_windows_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink76 = {
+  privatelink-servicebus-azure-net-dns-link = {
     private_dns_zone_key = "privatelink_servicebus_azure_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink77 = {
+  privatelink-servicebus-windows-net-dns-link = {
     private_dns_zone_key = "privatelink_servicebus_windows_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink78 = {
+  privatelink-services-ai-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_services_ai_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink79 = {
+  privatelink-signalr-net-dns-link = {
     private_dns_zone_key = "privatelink_signalr_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink80 = {
+  privatelink-siterecovery-windowsazure-com-dns-link = {
     private_dns_zone_key = "privatelink_siterecovery_windowsazure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink81 = {
+  privatelink-sql-azuresynapse-net-dns-link = {
     private_dns_zone_key = "privatelink_sql_azuresynapse_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink82 = {
+  privatelink-table-core-windows-net-dns-link = {
     private_dns_zone_key = "privatelink_table_core_windows_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink83 = {
+  privatelink-table-cosmos-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_table_cosmos_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink84 = {
+  privatelink-vaultcore-azure-net-dns-link = {
     private_dns_zone_key = "privatelink_vaultcore_azure_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink85 = {
+  privatelink-web-core-windows-net-dns-link = {
     private_dns_zone_key = "privatelink_web_core_windows_net"
     virtual_network_key  = "vn-use2-identity-01"
   }
-  pdnslink86 = {
+  privatelink-webpubsub-azure-com-dns-link = {
     private_dns_zone_key = "privatelink_webpubsub_azure_com"
     virtual_network_key  = "vn-use2-identity-01"
   }

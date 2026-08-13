@@ -1,7 +1,7 @@
 module "private_dns_zone" {
-  source     = "../../modules/networking/private_dns_zone"
-  for_each   = var.private_dns_zones
-  settings   = each.value
+  source   = "../../modules/networking/private_dns_zone"
+  for_each = var.private_dns_zones
+  settings = each.value
 }
 
 module "private_dns_zone_virtual_network_link" {
