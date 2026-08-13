@@ -129,7 +129,7 @@ resource virtualNetworkGateway 'Microsoft.Network/virtualNetworkGateways@2025-07
     gatewayType: 'Vpn'
     vpnType: 'RouteBased'
     vpnGatewayGeneration: 'Generation2'
-    enableBgp: false
+    enableBgp: true
     enableHighBandwidthVpnGateway: false
     activeActive: false
     allowRemoteVnetTraffic: false
