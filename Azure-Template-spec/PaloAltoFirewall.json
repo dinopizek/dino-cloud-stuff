@@ -1,0 +1,586 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.35",
+    "parameters": {
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+                "description": "Location for all resources."
+            }
+        },
+        "customData": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "String passed down to the Virtual Machine."
+            }
+        },
+        "imageSku": {
+            "type": "string",
+            "defaultValue": "byol",
+            "metadata": {
+                "description": "Image SKU"
+            }
+        },
+        "vmName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of VM-Series VM in the Azure portal"
+            },
+            "defaultValue": "VM-Series"
+        },
+        "imageVersion": {
+            "type": "string",
+            "allowedValues": [
+                "11.2.8",
+                "11.1.407",
+                "10.2.1009"
+            ],
+            "metadata": {
+                "description": "Version number of VM-Series VM in the Azure portal"
+            },
+            "defaultValue": "11.2.8"
+        },
+        "vmSize": {
+            "type": "string",
+            "allowedValues": [
+                "Standard_D3_v2",
+                "Standard_D4_v2",
+                "Standard_D5_v2",
+                "Standard_D4s_v5",
+                "Standard_DS3_v2",
+                "Standard_DS4_v2",
+                "Standard_DS5_v2",
+                "Standard_D8_v3",
+                "Standard_D16_v3",
+                "Standard_D8s_v3",
+                "Standard_D16s_v3",
+                "Standard_F8s_v2",
+                "Standard_F32s_v2",
+                "Standard_D8_v4",
+                "Standard_D16_v4",
+                "Standard_D8s_v4",
+                "Standard_D16s_v4",
+                "Standard_D8s_v5",
+                "Standard_D8ls_v5",
+                "Standard_D4s_v5"
+            ],
+            "metadata": {
+                "description": "Azure VM size for VM-Series"
+            },
+            "defaultValue": "Standard_F8s_v2"
+        },
+        "virtualNetworkName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Virtual Network (VNET)"
+            },
+            "defaultValue": ""
+        },
+        "vnetNewOrExisting": {
+            "type": "string",
+            "defaultValue": "new",
+            "allowedValues": [
+                "new",
+                "existing"
+            ],
+            "metadata": {
+                "description": "Use new or existing VNET"
+            }
+        },
+        "virtualNetworkAddressPrefixes": {
+            "type": "array",
+            "defaultValue": [
+                "192.168.0.0/16"
+            ],
+            "metadata": {
+                "description": "Virtual network address CIDR"
+            }
+        },
+        "virtualNetworkExistingRGName": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Name of resource group of existing VNET (if applicable)"
+            }
+        },
+        "architecture": {
+            "defaultValue": "two-arm",
+            "type": "string",
+            "allowedValues": [
+                "two-arm",
+                "one-arm"
+            ],
+            "metadata": {
+                "description": "Architecture of the firewall deployment"
+            }
+        },
+        "subnet0Name": {
+            "type": "string",
+            "defaultValue": "Mgmt",
+            "metadata": {
+                "description": "Subnet for Management"
+            }
+        },
+        "subnet1Name": {
+            "type": "string",
+            "defaultValue": "Public",
+            "metadata": {
+                "description": "Subnet for Public"
+            }
+        },
+        "subnet2Name": {
+            "type": "string",
+            "defaultValue": "Private",
+            "metadata": {
+                "description": "Subnet for Private"
+            }
+        },
+        "subnet0Prefix": {
+            "type": "string",
+            "defaultValue": "192.168.0.0/24",
+            "metadata": {
+                "description": "Mgmt subnet CIDR"
+            }
+        },
+        "subnet1Prefix": {
+            "type": "string",
+            "defaultValue": "192.168.1.0/24",
+            "metadata": {
+                "description": "Public subnet CIDR"
+            }
+        },
+        "subnet2Prefix": {
+            "type": "string",
+            "defaultValue": "192.168.2.0/24",
+            "metadata": {
+                "description": "Private subnet CIDR"
+            }
+        },
+        "subnet1StartAddress": {
+            "type": "string",
+            "defaultValue": "192.168.1.4",
+            "metadata": {
+                "description": "Public subnet start address"
+            }
+        },
+        "subnet2StartAddress": {
+            "type": "string",
+            "defaultValue": "192.168.2.4",
+            "metadata": {
+                "description": "Private subnet start address"
+            }
+        },
+        "authenticationType": {
+            "type": "string",
+            "metadata": {
+                "description": "Type of administrator user authentication "
+            },
+            "allowedValues": [
+                "sshPublicKey",
+                "password"
+            ],
+            "defaultValue": "password"
+        },
+        "adminUsername": {
+            "type": "string",
+            "metadata": {
+                "description": "Username of the administrator account of VM-Series"
+            }
+        },
+        "adminPasswordOrKey": {
+            "type": "securestring",
+            "metadata": {
+                "description": "Password or ssh key for the administrator account of VM-Series."
+            }
+        },
+        "publicIPNewOrExisting": {
+            "type": "string",
+            "defaultValue": "new",
+            "allowedValues": [
+                "new",
+                "existing"
+            ],
+            "metadata": {
+                "description": "Public IP for mgmt interface is new or existing"
+            }
+        },
+        "publicIPAddressName": {
+            "type": "string",
+            "defaultValue": "[toLower( concat( 'fwmgmtpublicname', uniqueString(resourceGroup().id) ) )]",
+            "metadata": {
+                "description": "Name for public IP resource"
+            }
+        },
+        "publicIPRGName": {
+            "type": "string",
+            "defaultValue": "None",
+            "metadata": {
+                "description": "Name for public IP resource group"
+            }
+        },
+        "publicIPAllocationMethod": {
+            "type": "string",
+            "defaultValue": "Dynamic",
+            "allowedValues": [
+                "Dynamic",
+                "Static"
+            ],
+            "metadata": {
+                "description": "Allocation method of public IP resource"
+            }
+        },
+        "bootstrap": {
+            "type": "string",
+            "defaultValue": "No bootstrap",
+            "metadata": {
+                "description": "Pass bootstrap data to VM"
+            }
+        },
+        "zone": {
+            "type": "string",
+            "defaultValue": "1",
+            "allowedValues": [
+                "1",
+                "2",
+                "3"
+            ],
+            "metadata": {
+                "description": "Availability Zone for VM-Series"
+            }
+        },
+        "availabilityOption": {
+            "type": "string",
+            "defaultValue": "Availability Set",
+            "metadata": {
+                "description": "Deploy VM-Series in an availability set or a specific availability zone. Deploy VM-Series in an availability set or availability zones. If Availability Zones deployment is selected but the location does not support all Availability Zones, we will deploy an Availability Set."
+            },
+            "allowedValues": [
+                "Availability Set",
+                "Availability Zone"
+            ]
+        }
+    },
+    "variables": {
+        "imagePublisher": "paloaltonetworks",
+        "imageSku": "[parameters('imageSku')]",
+        "imageOffer": "vmseries-flex",
+        "nicName": "[concat(parameters('vmName'), '-')]",
+        "existingVnetID": "[resourceId(parameters('virtualNetworkExistingRGName'),concat('Microsoft.Network','/','virtualNetworks'),parameters('virtualNetworkName'))]",
+        "existingSubnet0Ref": "[concat(variables('existingVnetID'),'/subnets/',parameters('subnet0Name'))]",
+        "existingSubnet1Ref": "[concat(variables('existingVnetID'),'/subnets/',parameters('subnet1Name'))]",
+        "existingSubnet2Ref": "[concat(variables('existingVnetID'),'/subnets/',parameters('subnet2Name'))]",
+        "newVnetID": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",
+        "newSubnet0Ref": "[concat(variables('newVnetID'),'/subnets/',parameters('subnet0Name'))]",
+        "newSubnet1Ref": "[concat(variables('newVnetID'),'/subnets/',parameters('subnet1Name'))]",
+        "newSubnet2Ref": "[concat(variables('newVnetID'),'/subnets/',parameters('subnet2Name'))]",
+        "subnet0Ref": "[if(equals(parameters('vnetNewOrExisting'),'new'), variables('newSubnet0Ref'), variables('existingSubnet0Ref'))]",
+        "subnet1Ref": "[if(equals(parameters('vnetNewOrExisting'),'new'), variables('newSubnet1Ref'), variables('existingSubnet1Ref'))]",
+        "subnet2Ref": "[if(equals(parameters('vnetNewOrExisting'),'new'), variables('newSubnet2Ref'), variables('existingSubnet2Ref'))]",
+        "virtualNetworkAddressPrefix": "[parameters('virtualNetworkAddressPrefixes')[0]]",
+        "twoArm": "two-arm",
+        "isTwoArmArchitectureDeployment": "[equals(parameters('architecture'),variables('twoArm'))]",
+        "zones": [
+            "[parameters('zone')]"
+        ],
+        "uniqueId": "[uniqueString(resourceGroup().id)]",
+        "linuxConfiguration": {
+            "disablePasswordAuthentication": true,
+            "ssh": {
+                "publicKeys": [
+                    {
+                        "path": "[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]",
+                        "keyData": "[parameters('adminPasswordOrKey')]"
+                    }
+                ]
+            }
+        },
+        "subnets": [
+            {
+                "name": "[parameters('subnet0Name')]",
+                "properties": {
+                    "addressPrefix": "[parameters('subnet0Prefix')]"
+                }
+            },
+            {
+                "name": "[parameters('subnet1Name')]",
+                "properties": {
+                    "addressPrefix": "[parameters('subnet1Prefix')]"
+                }
+            },
+            {
+                "name": "[parameters('subnet2Name')]",
+                "properties": {
+                    "addressPrefix": "[parameters('subnet2Prefix')]"
+                }
+            }
+        ],
+        "singleArmSubnets": [
+            {
+                "name": "[parameters('subnet0Name')]",
+                "properties": {
+                    "addressPrefix": "[parameters('subnet0Prefix')]"
+                }
+            },
+            {
+                "name": "[parameters('subnet2Name')]",
+                "properties": {
+                    "addressPrefix": "[parameters('subnet2Prefix')]"
+                }
+            }
+        ],
+        "isAvailabilityZoneSupportedInRegion": "[if(greaterOrEquals( length(pickZones('Microsoft.Compute', 'virtualMachines', parameters('location'),3)),3) , bool('true'), bool('false'))]",
+        "shouldDeployIntoAvailabilityZones": "[and(equals(parameters('availabilityOption'),'Availability Zone'), variables('isAvailabilityZoneSupportedInRegion') ) ]"
+    },
+    "resources": [
+        {
+            "name": "pid-0a6ce0a1-eb47-41b5-af43-e99c32a2e9a7-partnercenter",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-10-01",
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "resources": []
+                }
+            }
+        },
+        {
+            "name": "[parameters('publicIPAddressName')]",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-08-01",
+            "condition": "[equals(parameters('publicIPNewOrExisting'), 'new')]",
+            "location": "[parameters('location')]",
+            "properties": {
+                "publicIPAllocationMethod": "Static",
+                "dnsSettings": {
+                    "domainNameLabel": "[parameters('publicIPAddressName')]"
+                }
+            },
+            "zones": [
+                "1",
+                "2",
+                "3"
+            ],
+            "sku": {
+                "name": "Standard"
+            }
+        },
+        {
+            "name": "[parameters('virtualNetworkName')]",
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2017-10-01",
+            "condition": "[equals(parameters('vnetNewOrExisting'), 'new')]",
+            "location": "[parameters('location')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('virtualNetworkAddressPrefix')]"
+                    ]
+                },
+                "subnets": "[if(variables('isTwoArmArchitectureDeployment'), variables('subnets'), variables('singleArmSubnets'))]"
+            }
+        },
+        {
+            "name": "[concat(variables('nicName'), 'mgmt-nic-01')]",
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2017-10-01",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddressName'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]"
+            ],
+            "location": "[parameters('location')]",
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig-mgmt",
+                        "properties": {
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[if(equals(parameters('publicIPNewOrExisting'), 'existing'), resourceId(parameters('publicIPRGName'), 'Microsoft.Network/publicIPAddresses', parameters('publicIPAddressName')), resourceId('Microsoft.Network/publicIPAddresses',parameters('publicIPAddressName')))]"
+                            },
+                            "subnet": {
+                                "id": "[variables('subnet0Ref')]"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "[concat(variables('nicName'), 'untrust-nic-01')]",
+            "type": "Microsoft.Network/networkInterfaces",
+            "condition": "[variables('isTwoArmArchitectureDeployment')]",
+            "apiVersion": "2017-10-01",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddressName'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]"
+            ],
+            "location": "[parameters('location')]",
+            "properties": {
+                "enableIPForwarding": true,
+                "enableAcceleratedNetworking": "[if(equals(parameters('imageVersion'), '8.1.9'), 'false', 'true')]",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig-untrust",
+                        "properties": {
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[variables('subnet1Ref')]"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "[concat(variables('nicName'), 'trust-nic-01')]",
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2017-10-01",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddressName'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]"
+            ],
+            "location": "[parameters('location')]",
+            "properties": {
+                "enableIPForwarding": true,
+                "enableAcceleratedNetworking": "[if(equals(parameters('imageVersion'), '8.1.9'), 'false', 'true')]",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig-trust",
+                        "properties": {
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[variables('subnet2Ref')]"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "[parameters('vmName')]",
+            "type": "Microsoft.Compute/virtualMachines",
+            "condition": "[variables('isTwoArmArchitectureDeployment')]",
+            "apiVersion": "2018-06-01",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddressName'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]"
+            ],
+            "location": "[parameters('location')]",
+            "plan": {
+                "name": "[variables('imageSku')]",
+                "product": "[variables('imageOffer')]",
+                "publisher": "[variables('imagePublisher')]"
+            },
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "[parameters('vmSize')]"
+                },
+                "osProfile": {
+                    "computerName": "[parameters('vmName')]",
+                    "adminUsername": "[parameters('adminUsername')]",
+                    "adminPassword": "[parameters('adminPasswordOrKey')]",
+                    "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('linuxConfiguration'))]",
+                    "customData": "[if(equals(parameters('bootstrap'), 'No bootstrap'), json('null'), base64(parameters('customData')))]"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "[variables('imagePublisher')]",
+                        "offer": "[variables('imageOffer')]",
+                        "sku": "[variables('imageSku')]",
+                        "version": "[parameters('imageVersion')]"
+                    },
+                    "osDisk": {
+                        "name": "[concat(parameters('vmName'), '-osdisk-01')]",
+                        "diskSizeGB": 64,
+                        "createOption": "FromImage"
+                    }
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nicName'), 'mgmt-nic-01'))]",
+                            "properties": {
+                                "primary": true
+                            }
+                        },
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nicName'), 'untrust-nic-01'))]",
+                            "properties": {
+                                "primary": false
+                            }
+                        },
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nicName'), 'trust-nic-01'))]",
+                            "properties": {
+                                "primary": false
+                            }
+                        }
+                    ]
+                }
+            },
+            "zones": "[if(variables('shouldDeployIntoAvailabilityZones'), variables('zones'), json('null'))]"
+        },
+        {
+            "name": "[parameters('vmName')]",
+            "condition": "[not(variables('isTwoArmArchitectureDeployment'))]",
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2018-06-01",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddressName'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]"
+            ],
+            "location": "[parameters('location')]",
+            "plan": {
+                "name": "[variables('imageSku')]",
+                "product": "[variables('imageOffer')]",
+                "publisher": "[variables('imagePublisher')]"
+            },
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "[parameters('vmSize')]"
+                },
+                "osProfile": {
+                    "computerName": "[parameters('vmName')]",
+                    "adminUsername": "[parameters('adminUsername')]",
+                    "adminPassword": "[parameters('adminPasswordOrKey')]",
+                    "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('linuxConfiguration'))]",
+                    "customData": "[if(equals(parameters('bootstrap'), 'No bootstrap'), json('null'), base64(parameters('customData')))]"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "[variables('imagePublisher')]",
+                        "offer": "[variables('imageOffer')]",
+                        "sku": "[variables('imageSku')]",
+                        "version": "[parameters('imageVersion')]"
+                    },
+                    "osDisk": {
+                        "name": "[concat(parameters('vmName'), '-osdisk-01')]",
+                        "diskSizeGB": 64,
+                        "createOption": "FromImage"
+                    }
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nicName'), 'mgmt-nic-01'))]",
+                            "properties": {
+                                "primary": true
+                            }
+                        },
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nicName'), 'trust-nic-01'))]",
+                            "properties": {
+                                "primary": false
+                            }
+                        }
+                    ]
+                }
+            },
+            "zones": "[if(variables('shouldDeployIntoAvailabilityZones'), variables('zones'), json('null'))]"
+        }
+    ]
+}
