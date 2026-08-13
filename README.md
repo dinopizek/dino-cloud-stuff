@@ -1,6 +1,6 @@
 Hello wondering traveler.
 
-Just my cloud and IaC stuff.
+Just my cloud stuff.
 
 Maybe you find it useful.
 
