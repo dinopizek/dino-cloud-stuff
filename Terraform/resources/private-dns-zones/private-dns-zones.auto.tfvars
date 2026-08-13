@@ -1,23 +1,23 @@
 conn_data_resource_groups = {
-  "rg-use2-private-dns-prod-01" = {
+  "rg-use2-private-dns-hub-01" = {
     location = "eastus2"
   }
 }
 
 id_data_virtual_networks = {
   "vn-use2-iac-mes-prod-01" = {
-    resource_group_name = "rg-use2-private-dns-prod-01"
+    resource_group_name = "rg-use2-private-dns-hub-01"
   }
 }
 
 private_dns_zones = {
   privatelink_blob_core_windows_net = {
     name                = "privatelink.blob.core.windows.net"
-    resource_group_name = "rg-use2-private-dns-prod-01"
+    resource_group_name = "rg-use2-private-dns-hub-01"
   }
   privatelink_vaultcore_azure_net = {
     name                = "privatelink.vaultcore.azure.net"
-    resource_group_name = "rg-use2-private-dns-prod-01"
+    resource_group_name = "rg-use2-private-dns-hub-01"
   }
 }
 

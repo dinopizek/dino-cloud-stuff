@@ -5,7 +5,7 @@ param tags object = {
 }
 
 resource rtPaUntrust 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sdc-connectivity-prod-01-PA-Untrust-rt'
+  name: 'vnet-sdc-connectivity-prod-01-pa-untrust-rt'
   location: location
   tags: tags
   properties: {
@@ -15,7 +15,7 @@ resource rtPaUntrust 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource rtPaTrust 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sdc-connectivity-prod-01-PA-Trust-rt'
+  name: 'vnet-sdc-connectivity-prod-01-pa-trust-rt'
   location: location
   tags: tags
   properties: {
@@ -25,7 +25,7 @@ resource rtPaTrust 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource rtPaMgmt 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sdc-connectivity-prod-01-PA-MGMT-rt'
+  name: 'vnet-sdc-connectivity-prod-01-pa-mgmt-rt'
   location: location
   tags: tags
   properties: {
@@ -45,7 +45,7 @@ resource rtGateway 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource rtElasticsearch 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sdc-connectivity-prod-01-Elasticsearch-rt'
+  name: 'vnet-sdc-connectivity-prod-01-elasticsearch-rt'
   location: location
   tags: tags
   properties: {
@@ -55,7 +55,7 @@ resource rtElasticsearch 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource rtPrivateDmz 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sdc-connectivity-prod-01-PrivateDMZ-rt'
+  name: 'vnet-sdc-connectivity-prod-01-privatedmz-rt'
   location: location
   tags: tags
   properties: {
@@ -75,7 +75,7 @@ resource rtProduction 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource rtPublicDmz 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sdc-connectivity-prod-01-PublicDMZ-rt'
+  name: 'vnet-sdc-connectivity-prod-01-publicdmz-rt'
   location: location
   tags: tags
   properties: {
@@ -85,7 +85,7 @@ resource rtPublicDmz 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource rtTestDev 'Microsoft.Network/routeTables@2025-07-01' = {
-  name: 'vnet-sdc-connectivity-prod-01-TestDev-rt'
+  name: 'vnet-sdc-connectivity-prod-01-testdev-rt'
   location: location
   tags: tags
   properties: {
