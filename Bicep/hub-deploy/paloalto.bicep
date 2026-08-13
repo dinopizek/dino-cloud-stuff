@@ -121,6 +121,20 @@ resource nsgPaMgmt 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
   }
 }
 
+resource publicIPPrefixes 'Microsoft.Network/publicIPPrefixes@2025-07-01' = {
+  name: 'ippre-sdc-hub-pafw-untrust-prod-01'
+  location: location
+  tags: tags
+  sku: {
+    name: 'Standard'
+    tier: 'Regional'
+  }
+  properties: {
+    publicIPAddressVersion: 'IPv4'
+    prefixLength: 31
+  }
+}
+
 output rtPaUntrustId string = rtPaUntrust.id
 output rtPaTrustId string = rtPaTrust.id
 output rtPaMgmtId string = rtPaMgmt.id

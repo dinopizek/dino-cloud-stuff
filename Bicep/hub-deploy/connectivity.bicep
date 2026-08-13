@@ -16,6 +16,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
   location: location
   tags: tags
   properties: {
+    privateEndpointVNetPolicies: 'Disabled'
     addressSpace: {
       addressPrefixes: [
         '10.248.0.0/16'
@@ -97,6 +98,9 @@ resource publicIPAddresses 'Microsoft.Network/publicIPAddresses@2025-07-01' = {
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4
     ipTags: []
+    ddosSettings: {
+      protectionMode: 'VirtualNetworkInherited'
+    }
   }
 }
 
@@ -105,6 +109,10 @@ resource virtualNetworkGateway 'Microsoft.Network/virtualNetworkGateways@2025-07
   location: location
   tags: tags
   properties: {
+    bgpSettings: {
+      asn: 65515
+    }
+
     ipConfigurations: [
       {
         name: 'default'
