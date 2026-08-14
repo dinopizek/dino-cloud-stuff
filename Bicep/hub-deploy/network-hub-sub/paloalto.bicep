@@ -95,7 +95,7 @@ resource rtTestDev 'Microsoft.Network/routeTables@2025-07-01' = {
 }
 
 resource nsgPaUntrust 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: 'nsg-vn-sdc-connectivity-prod-01-sn-paloalto-untrust-01'
+  name: 'nsg-vnet-sdc-connectivity-prod-01-sn-paloalto-untrust-01'
   location: location
   tags: tags
   properties: {
@@ -139,7 +139,7 @@ resource nsgPaUntrust 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
 }
 
 resource nsgPaTrust 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: 'nsg-vn-sdc-connectivity-prod-01-sn-paloalto-trust-01'
+  name: 'nsg-vnet-sdc-connectivity-prod-01-sn-paloalto-trust-01'
   location: location
   tags: tags
   properties: {
@@ -183,7 +183,7 @@ resource nsgPaTrust 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
 }
 
 resource nsgPaMgmt 'Microsoft.Network/networkSecurityGroups@2025-07-01' = {
-  name: 'nsg-vn-sdc-connectivity-prod-01-sn-paloalto-mgmt-01'
+  name: 'nsg-vnet-sdc-connectivity-prod-01-sn-paloalto-mgmt-01'
   location: location
   tags: tags
   properties: {
