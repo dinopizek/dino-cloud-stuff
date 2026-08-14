@@ -34,3 +34,13 @@ module connectivity 'connectivity.bicep' = {
     nsgPaMgmtId: paloalto.outputs.nsgPaMgmtId
   }
 }
+
+module loadbalancer 'loadbalancer.bicep' = {
+  name: 'deploy-loadbalancer'
+  scope: rgPaloAlto
+  params: {
+    location: location
+    vnetId: connectivity.outputs.vnetId
+    trustSubnetId: '${connectivity.outputs.vnetId}/subnets/sn-paloalto-trust-01'
+  }
+}
