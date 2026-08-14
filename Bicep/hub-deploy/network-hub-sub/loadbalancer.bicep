@@ -114,7 +114,3 @@ resource backendPool 'Microsoft.Network/loadBalancers/backendAddressPools@2025-0
     ]
   }
 }
-
-output internalLoadBalancerId string = internalLoadBalancer.id
-output feConfigId string = internalLoadBalancer.properties.frontendIPConfigurations[0].id
-output backendPoolId string = backendPool.id
